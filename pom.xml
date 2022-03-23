@@ -55,8 +55,13 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
                     <configuration>
+<!--                        mvn test -DtestLocal="uk"-->
+                        <systemPropertyVariables>
+                            <testBrowser>chrome</testBrowser>
+                            <testLocal>us</testLocal>
+                        </systemPropertyVariables>
                         <suiteXmlFiles>
-                            <suiteXmlFile>test_param.xml</suiteXmlFile>
+                            <suiteXmlFile>test_home_internalization.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <skipTests>false</skipTests>
                     </configuration>

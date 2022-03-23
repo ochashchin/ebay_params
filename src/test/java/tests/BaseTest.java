@@ -1,22 +1,28 @@
 package tests;
 
+import objects.BaseDriver;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
-import java.awt.*;
+import java.io.IOException;
+import java.util.Properties;
 
 public class BaseTest {
 
-    public WebDriver driver = new ChromeDriver();
+    public WebDriver driver;
+    Properties config = new Properties();
 
-    @BeforeTest
-    public void setUp() throws AWTException {
+    @BeforeTest(alwaysRun = true)
+    @Parameters({"browser"})
+    public void setUp(@Optional("") String browser) {
+        driver = BaseDriver.getDriver(browser);
         driver.manage().window().maximize();
     }
 
-    @AfterTest
+    @AfterTest(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
