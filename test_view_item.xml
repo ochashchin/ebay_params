@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="test_view_item.xml" verbose="1" parallel="methods" thread-count="6">
+    <test name="test_view_item">
+        <groups>
+            <run>
+                <include name="ViewItem"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="tests.ViewItemTest" />
+        </classes>
+    </test>
+</suite>
