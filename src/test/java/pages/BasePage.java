@@ -2,13 +2,13 @@ package pages;
 
 import objects.Log;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+import java.util.Objects;
 import java.util.function.Function;
 
 public class BasePage {
@@ -16,11 +16,13 @@ public class BasePage {
     public WebDriver driver;
     public WebDriverWait wait;
     public FluentWait fWait;
+    public Actions action;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 3);
         fWait = new FluentWait(driver);
+        action = new Actions(driver);
     }
 
     public void get(String URL) throws Exception {
@@ -44,6 +46,31 @@ public class BasePage {
         }
     }
 
+    public void hover(String xPath) throws Exception {
+        try {
+            WebElement result = waitElement(xPath);
+            action.moveToElement(result).perform();
+            Log.printLn("Hover on " + result.toString());
+        } catch (Exception e) {
+            Log.printLn("Cannot Hover to element, because: " + e);
+            throw new Exception();
+        }
+    }
+
+    public void pressKeys(String xPath, Keys... keys) throws Exception {
+        try {
+            String k = "";
+            for (Keys key : keys) {
+                k += key.toString();
+            }
+            WebElement result = waitElement(xPath);
+            result.sendKeys(k);
+            Log.printLn("Key pressed on " + result.toString());
+        } catch (Exception e) {
+            Log.printLn("Cannot press on key, because: " + e);
+            throw new Exception();
+        }
+    }
 
     public void type(String xPath, String text) throws Exception {
         try {
@@ -100,7 +127,6 @@ public class BasePage {
 
     public boolean focusable(String xPath) throws Exception {
         try {
-            click(xPath);
             WebElement result = wait.until(ExpectedConditions.visibilityOf(waitElement(xPath)));
 
             if (result.equals(driver.switchTo().activeElement())) {
@@ -132,8 +158,8 @@ public class BasePage {
     }
 
     public void waitAnimToPlay() {
-        fWait.withTimeout(Duration.ofMillis(1000));
-        fWait.pollingEvery(Duration.ofMillis(1000));
+        fWait.withTimeout(Duration.ofMillis(600));
+        fWait.pollingEvery(Duration.ofMillis(600));
         fWait.ignoring(NoSuchElementException.class);
 
         try {

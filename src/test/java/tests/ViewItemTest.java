@@ -7,21 +7,21 @@ import pages.ViewItemPage;
 public class ViewItemTest extends BaseTest {
 
     @Test(groups = {"ViewItem"})
-    public void test_view_item_viewport_visible() throws Exception {
+    public void test_view_item_viewport_unit_visible() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .verifyIsViewPortVisible();
     }
 
     @Test(groups = {"ViewItem"})
-    public void test_view_item_viewport_clickable() throws Exception {
+    public void test_view_item_viewport_unit_clickable() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .verifyIsViewPortClickable();
     }
 
     @Test(groups = {"ViewItem"})
-    public void test_view_item_viewport_focusable() throws Exception {
+    public void test_view_item_viewport_unit_focusable() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .verifyIsViewPortFocusable();
@@ -42,6 +42,13 @@ public class ViewItemTest extends BaseTest {
     }
 
     @Test(groups = {"ViewItem"})
+    public void test_view_item_viewport_unit_hover() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsViewPortHover();
+    }
+
+    @Test(groups = {"ViewItem"})
     public void test_view_item_viewport_integration_color() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
@@ -50,6 +57,55 @@ public class ViewItemTest extends BaseTest {
                 .verifyIsViewPortSetColor("Gold")
                 .verifyIsViewPortSetColor("Silver")
                 .verifyIsViewPortSetColor("- Select -");
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_unit_visible() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewResourceVisible();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_unit_clickable() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewResourceClickable();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_unit_focusable() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewResourceFocusable();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_integration_expand() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewResourceExpandable();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_integration_right() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewIntegrationRight();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_integration_left() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewIntegrationLeft();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_integration_color() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewIntegrationColor();
     }
 
 }
