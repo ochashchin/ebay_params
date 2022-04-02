@@ -108,4 +108,34 @@ public class ViewItemTest extends BaseTest {
                 .verifyIsEnlargeViewIntegrationColor();
     }
 
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_enlarge_integration_focus_to_viewport() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsEnlargeViewIntegrationFocusToViewport();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_item_title_unit_visible() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsIconTitleVisible()
+                .verifyIsIconTitleTextVisible()
+                .verifyIsItemTitleVisible()
+                .verifyIsSubTitleVisible();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_title_unit_highlight() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .verifyIsTitleHighlightCopy();
+    }
+
+//    @Test(groups = {"ViewItem"})
+//    public void test_view_item_action_details_unit_visibility() throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+//                .open()
+//                .verifyIsActionDetailsVisibility();
+//    }
 }

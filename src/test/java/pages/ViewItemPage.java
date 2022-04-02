@@ -1,9 +1,15 @@
 package pages;
 
+import com.sun.deploy.util.SystemUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.security.Key;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +32,10 @@ public class ViewItemPage extends BasePage {
     public static final String enlargeViewLeft = "//button[@class='prev-arr navigation-image-arr']";
     public static final String expandView = "//div[@id='viEnlargeImgLayer']";
     public static final String expandViewClose = "//button[@class='vi_pl_cls_btn']";
+    public static final String itemTitleIcon = "//div[@class='ux-icon-text__icon']/span";
+    public static final String itemTitleIconTitle = "(//div[@class='ux-icon-text__text']/span)[1]";
+    public static final String itemTitle = "//h1[@class='x-item-title__mainTitle']/span";
+    public static final String itemTitleSub = "//div[@class='x-item-title__subTitle']/span";
 
     public ViewItemPage(WebDriver driver) {
         super(driver);
@@ -265,4 +275,93 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
+    public ViewItemPage verifyIsEnlargeViewIntegrationFocusToViewport() throws Exception {
+        String list = "(" + viewPortProgress + "/li)";
+        String t = attribute(enlargeViewQuantity, "textContent");
+        int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
+        scrollToElement(viewPortDown);
+        for (int i = 1; i <= size; i++) {
+            String atr = attribute(list + "[" + i + "]", "class");
+            Assert.assertTrue(atr.contains("selected"));
+            if(atr.contains("selected")){
+                for (int j = 1; j <= size; j++) {
+                    if(j != i) Assert.assertFalse(attribute(list + "[" + j + "]", "class")
+                            .contains("selected"));
+                }
+            }
+            if (i != size) {
+                click(enlargeViewRight);
+                waitAnimToPlay();
+            }
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsIconTitleVisible() throws Exception {
+        Assert.assertTrue(visible(itemTitleIcon));
+        Assert.assertTrue(visibleLayout(itemTitleIcon));
+        return this;
+    }
+
+    public ViewItemPage verifyIsIconTitleTextVisible() throws Exception {
+        Assert.assertTrue(visible(itemTitleIconTitle));
+        Assert.assertTrue(visibleLayout(itemTitleIconTitle));
+        return this;
+    }
+
+    public ViewItemPage verifyIsItemTitleVisible() throws Exception {
+        Assert.assertTrue(visible(itemTitle));
+        Assert.assertTrue(visibleLayout(itemTitle));
+        return this;
+    }
+
+    public ViewItemPage verifyIsSubTitleVisible() throws Exception {
+        Assert.assertTrue(visible(itemTitleSub));
+        Assert.assertTrue(visibleLayout(itemTitleSub));
+        return this;
+    }
+
+    public ViewItemPage verifyIsTitleHighlightCopy() throws Exception {
+        doubleClick(itemTitle);
+        pressCopy();
+        String buffer = Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor).toString();
+        Assert.assertTrue(buffer.contains(waitElement(itemTitle).getText()));
+        return this;
+    }
+
+//    public ViewItemPage verifyIsActionDetailsVisibility() throws Exception {
+//        scrollToElement(viewPortDown);
+//        List<String> condition = new ArrayList<String>(){
+//            {
+//                add("//*[@*='d-item-condition-label']/span");
+//                add("//*[@*='d-item-condition-text']//ancestor::*[@*='ux-textspans']");
+//                add("//*[@class='ux-icon-text__icon']//ancestor::*[@class='icon icon--information-small']");
+//                add("//*[@*='nonActPanel ']//ancestor::*[@*='ux-textspans ux-textspans--ITALIC']");
+//                add("//*[@*='nonActPanel ']//ancestor::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
+//                add("//label[@*='msku-sel-1']");
+//                add("//label[@*='msku-sel-2']");
+//                add("//label[@*='msku-sel-3']");
+//                add("//select[@*='msku-sel-1']");
+//                add("//select[@*='msku-sel-2']");
+//                add("//select[@*='msku-sel-3']");
+//                add("//*[@*='vi-vpqp-lbl-mp']");
+//                add("//label[@*='qtyTextBox']");
+//                for (int i = 0; i < waitElement("//*[@*='vi-vpqp-wrapper']").findElements(By.xpath("/*")).size(); i++) {
+//                    add("(//*[@*='vi-vpqp-pills-0']/*)[" + i + "]//*[@*='vi-vpqp-text']");
+//                    add("(//*[@*='vi-vpqp-pills-0']/*)[" + i + "]//*[@*='vi-vpqp-text vi-vpqp-price']");
+//                }
+//                add("//label[@*='qtyTextBox']");
+//                add("//input[@*='qtyTextBox']");
+//                add("//*[@*='mskuQtySubTxt']");
+//                add("//*[@*='qtySubTxt']");
+//                add("//*[@*='vi-txt-underline']");
+//                add("//*[@*='byrfdbk_atf_lnk_sm']");
+//            }
+//        };
+//        for (String e : condition) {
+//            Assert.assertTrue(visible(e));
+//            Assert.assertTrue(visibleLayout(e));
+//        }
+//        return this;
+//    }
 }

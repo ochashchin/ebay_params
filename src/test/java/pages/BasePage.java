@@ -17,6 +17,7 @@ public class BasePage {
     public WebDriverWait wait;
     public FluentWait fWait;
     public Actions action;
+    private String script;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
@@ -57,14 +58,10 @@ public class BasePage {
         }
     }
 
-    public void pressKeys(String xPath, Keys... keys) throws Exception {
+    public void pressKeys(String xPath, CharSequence... keys) throws Exception {
         try {
-            String k = "";
-            for (Keys key : keys) {
-                k += key.toString();
-            }
             WebElement result = waitElement(xPath);
-            result.sendKeys(k);
+            result.sendKeys(keys);
             Log.printLn("Key pressed on " + result.toString());
         } catch (Exception e) {
             Log.printLn("Cannot press on key, because: " + e);
@@ -125,6 +122,35 @@ public class BasePage {
         }
     }
 
+    public boolean visibleLayout(String xPath) throws Exception {
+        try {
+            int w = Integer.parseInt((((JavascriptExecutor) driver)
+                    .executeScript("return document.evaluate(\"" + xPath + "\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.offsetWidth", waitElement(xPath))).toString());
+            int h = Integer.parseInt((((JavascriptExecutor) driver)
+                    .executeScript("return document.evaluate(\"" + xPath + "\", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.offsetHeight", waitElement(xPath))).toString());
+            if (w > 0 && h > 0) {
+                Log.printLn("Resource visible");
+                return true;
+            } else {
+                Log.printLn("Resource not visible");
+                return false;
+            }
+        } catch (Exception e) {
+            Log.printLn("Resource not visible, because: " + e);
+            throw new Exception();
+        }
+    }
+
+    public void doubleClick(String xPath) throws Exception {
+        try {
+            action.doubleClick(waitElement(xPath)).doubleClick(waitElement(xPath)).perform();
+            Log.printLn("Double click");
+        } catch (Exception e) {
+            Log.printLn("Cannot double click, because" + e);
+            throw new Exception();
+        }
+    }
+
     public boolean focusable(String xPath) throws Exception {
         try {
             WebElement result = wait.until(ExpectedConditions.visibilityOf(waitElement(xPath)));
@@ -140,6 +166,10 @@ public class BasePage {
             Log.printLn("Element not focused, because: " + e);
             throw new Exception();
         }
+    }
+
+    public void pressCopy() {
+        ((JavascriptExecutor) driver).executeScript("document.execCommand('copy')");
     }
 
     public void scrollToElement(String xPath) {
@@ -161,7 +191,6 @@ public class BasePage {
         fWait.withTimeout(Duration.ofMillis(600));
         fWait.pollingEvery(Duration.ofMillis(600));
         fWait.ignoring(NoSuchElementException.class);
-
         try {
             fWait.until(new Function() {
                public WebElement apply(Object o) {
