@@ -60,7 +60,7 @@ public class BasePage {
 
     public void pressKeys(String xPath, CharSequence... keys) throws Exception {
         try {
-            WebElement result = waitElement(xPath);
+            WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
             result.sendKeys(keys);
             Log.printLn("Key pressed on " + result.toString());
         } catch (Exception e) {
@@ -118,7 +118,7 @@ public class BasePage {
             }
         } catch (Exception e) {
             Log.printLn("Element not visible, because: " + e);
-            throw new Exception();
+            return false;
         }
     }
 
