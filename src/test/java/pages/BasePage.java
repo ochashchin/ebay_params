@@ -36,7 +36,7 @@ public class BasePage {
         }
     }
 
-    public void click(String xPath) throws Exception {
+    public Object click(String xPath) throws Exception {
         try {
             WebElement result = waitElement(xPath);
             result.click();
@@ -45,6 +45,7 @@ public class BasePage {
             Log.printLn("Cannot click on " + " because: " + e);
             throw new Exception();
         }
+        return this;
     }
 
     public void hover(String xPath) throws Exception {

@@ -4,6 +4,9 @@ import objects.BaseDriver;
 import org.testng.annotations.Test;
 import pages.ViewItemPage;
 
+import static pages.ViewItemPage.actPanelAddToCartBtn;
+import static pages.ViewItemPage.actPanelBuyItNowBtn;
+
 public class ViewItemTest extends BaseTest {
 
     @Test(groups = {"ViewItem"})
@@ -243,6 +246,88 @@ public class ViewItemTest extends BaseTest {
                 .verifyIsActionDetailsSystemQuantityBoundaryMinInvalid()
                 .verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid()
                 .verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_units_visibility() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsActPanelUnitVisible();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_units_clickable() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsActPanelUnitClickable();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_integration_price_credit() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsActPanelIntegrationPriceCredit();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_and_action_details_positive_integration_buy_it_now() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .selectDropDown()
+                .click(actPanelBuyItNowBtn)
+                .verifyIsActPanelActionDetailsPositiveIntegrationBuyItNowDialogVisibility();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_and_action_details_negative_integration_buy_it_now() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .click(actPanelBuyItNowBtn)
+                .verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility()
+                .verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_and_action_details_positive_integration_add_to_cart() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .selectDropDown()
+                .click(actPanelAddToCartBtn)
+                .verifyIsActPanelActionDetailsPositiveIntegrationAddToCartDialogVisibility();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_act_panel_and_action_details_negative_integration_add_to_cart() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .click(actPanelAddToCartBtn)
+                .verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility()
+                .verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_why2buy_units_visibility() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .scroll()
+                .verifyIsWhy2BuyUnitVisibility();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_why2buy_unit_clickable() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .scroll()
+                .verifyIsWhy2BuyUnitClickable();
     }
 
 }

@@ -32,26 +32,35 @@ public class ViewItemPage extends BasePage {
     public static final String itemTitleIconTitle = "(//div[@class='ux-icon-text__text']/span)[1]";
     public static final String itemTitle = "//h1[@class='x-item-title__mainTitle']/span";
     public static final String itemTitleSub = "//div[@class='x-item-title__subTitle']/span";
-    private final String actionDetailsConditionText = "//*[@*='d-item-condition-label']/span";
-    private final String actionDetailsConditionDescText = "//*[@*='d-item-condition-text']//ancestor::*[@*='ux-textspans']";
-    private final String actionDetailsConditionDescTextIconButton = "//*[@*='nonActPanel ']/descendant::*[@class='fake-link fake-link--action']";
-    private final String actionDetailsConditionDescTextIcon = "//*[@class='ux-icon-text__icon']//ancestor::*[@class='icon icon--information-small']";
-    private final String actionDetailsConditionSellerNote = "//*[@*='nonActPanel ']//ancestor::*[@*='ux-textspans ux-textspans--ITALIC']";
-    private final String actionDetailsReadMore = "//*[@*='nonActPanel ']//ancestor::*[@*='ux-textspans ux-textspans--PSEUDOLINK']";
-    private final String actionDetailsNetworkText = "//label[@*='msku-sel-1']";
-    private final String actionDetailsStorageText = "//label[@*='msku-sel-2']";
-    private final String actionDetailsColorText = "//label[@*='msku-sel-3']";
-    private final String actionDetailsNetworkDropDown = "//select[@*='msku-sel-1']";
-    private final String actionDetailsStorageDropDown = "//select[@*='msku-sel-2']";
-    private final String actionDetailsColorDropDown = "//select[@*='msku-sel-3']";
-    private final String actionDetailsBulkText = "//*[@*='vi-vpqp-lbl-mp']";
-    private final String actionDetailsQuantityText = "//label[@*='qtyTextBox']";
-    private final String actionDetailsQuantityEditText = "//input[@*='qtyTextBox']";
-    private final String actionDetailsQuantityDescText = "//*[@*='mskuQtySubTxt']";
-    private final String actionDetailsQuantityAvailableText = "//*[@*='qtySubTxt']";
-    private final String actionDetailsQuantitySoldText = "//*[@*='vi-txt-underline']";
-    private final String actionDetailsQuantityFeedbackText = "//*[@*='byrfdbk_atf_lnk_sm']";
-    private final String dialogCondition = "//*[@*='lightbox-dialog__window lightbox-dialog__window--fade keyboard-trap--active']";
+    public static final String actionDetailsConditionText = "//*[@*='d-item-condition-label']/span";
+    public static final String actionDetailsConditionDescText = "//*[@*='d-item-condition-text']//ancestor::*[@*='ux-textspans']";
+    public static final String actionDetailsConditionDescTextIconButton = "//*[@*='nonActPanel ']/descendant::*[@class='fake-link fake-link--action']";
+    public static final String actionDetailsConditionDescTextIcon = "//*[@class='ux-icon-text__icon']//ancestor::*[@class='icon icon--information-small']";
+    public static final String actionDetailsConditionSellerNote = "//*[@*='nonActPanel ']//ancestor::*[@*='ux-textspans ux-textspans--ITALIC']";
+    public static final String actionDetailsReadMore = "//*[@*='nonActPanel ']//ancestor::*[@*='ux-textspans ux-textspans--PSEUDOLINK']";
+    public static final String actionDetailsNetworkText = "//label[@*='msku-sel-1']";
+    public static final String actionDetailsStorageText = "//label[@*='msku-sel-2']";
+    public static final String actionDetailsColorText = "//label[@*='msku-sel-3']";
+    public static final String actionDetailsNetworkDropDown = "//select[@*='msku-sel-1']";
+    public static final String actionDetailsStorageDropDown = "//select[@*='msku-sel-2']";
+    public static final String actionDetailsColorDropDown = "//select[@*='msku-sel-3']";
+    public static final String actionDetailsBulkText = "//*[@*='vi-vpqp-lbl-mp']";
+    public static final String actionDetailsQuantityText = "//label[@*='qtyTextBox']";
+    public static final String actionDetailsQuantityEditText = "//input[@*='qtyTextBox']";
+    public static final String actionDetailsQuantityDescText = "//*[@*='mskuQtySubTxt']";
+    public static final String actionDetailsQuantityAvailableText = "//*[@*='qtySubTxt']";
+    public static final String actionDetailsQuantitySoldText = "//*[@*='vi-txt-underline']";
+    public static final String actionDetailsQuantityFeedbackText = "//*[@*='byrfdbk_atf_lnk_sm']";
+    public static final String dialogCondition = "//*[@*='lightbox-dialog__window lightbox-dialog__window--fade keyboard-trap--active']";
+    public static final String actPanelPriceText = "//*[@*='lbl-value-set']/*[1]";
+    public static final String actPanelPriceInt = "//*[@*='vi-vpo-now u-flL w29 vi-price']/*[1]";
+    public static final String actPanelCreditText = "//*[@*='vi-ppc-buybox-msg']/*[1]";
+    public static final String actPanelBuyItNowBtn = "//*[@*='binBtn_btn']";
+    public static final String actPanelAddToCartBtn = "//*[@*='atcRedesignId_btn']";
+    public static final String actPanelAddToWatchListBtn = "//*[@*='vi-atl-lnk']";
+    public static final String cartDialog = "//*[@*='vi_oly_atcRedesignId_overlay-atc-container']";
+    public static final String calculatorDialog = "//*[@*='calculatorWrapper']";
+
 
     public ViewItemPage(WebDriver driver) {
         super(driver);
@@ -576,7 +585,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage  selectDropDown() {
+    public ViewItemPage selectDropDown() {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actionDetailsNetworkDropDown);
@@ -590,6 +599,148 @@ public class ViewItemPage extends BasePage {
                 new Select(waitElement(element)).selectByIndex(i++);
                 waitAnimToPlay();
             }
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelUnitVisible() throws Exception {
+        List<String> elements = new ArrayList<String>() {
+            {
+                add(actPanelPriceText);
+                add(actPanelPriceInt);
+                add(actPanelCreditText);
+                add(actPanelBuyItNowBtn);
+                add(actPanelAddToCartBtn);
+                add(actPanelAddToWatchListBtn);
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelUnitClickable() {
+        List<String> elements = new ArrayList<String>() {
+            {
+                add(actPanelCreditText);
+                add(actPanelBuyItNowBtn);
+                add(actPanelAddToCartBtn);
+                add(actPanelAddToWatchListBtn);
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelIntegrationPriceCredit() throws Exception {
+        click(actPanelCreditText);
+        waitAnimToPlay();
+        Assert.assertTrue(visible(calculatorDialog));
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility() throws Exception {
+        waitAnimToPlay();
+        List<String> elements = new ArrayList<String>() {
+            {
+                for (int i = 1; i <= 3; i++) {
+                    add("(//*[@*='errorIcon'])[" + i + "]");
+                    add("(//*[@*='u-cb err'])[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage click(String xPath) throws Exception {
+        super.click(xPath);
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus() throws Exception {
+        waitAnimToPlay();
+        List<String> elements = new ArrayList<String>() {
+            {
+                add(actionDetailsNetworkDropDown);
+                add(actionDetailsStorageDropDown);
+                add(actionDetailsColorDropDown);
+            }
+        };
+        search:
+        {
+            for (String element : elements) {
+                if (focusable(element)) break search;
+            }
+            Assert.assertFalse(false);
+        }
+        Assert.assertTrue(true);
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelActionDetailsPositiveIntegrationBuyItNowDialogVisibility() throws Exception {
+        Assert.assertTrue(visible("//*[@*='streamline-bin-layer']"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelActionDetailsPositiveIntegrationAddToCartDialogVisibility() throws Exception {
+        Assert.assertTrue(visible("//*[@*='app-atc-layer-redesign-content-wrapper ']"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyUnitVisibility() throws Exception {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='vi-crwarranty-logo vi-crwarranty-image']");
+                add("//*[@*='vi-crwarranty-title']");
+                add("//*[@*='w2b-cnt w2b-3 w2b-red']/*");
+                add("//*[@*='vi-del-txt-spacing']/*[1]");
+                add("//*[@*='vi-fnf-ship-txt ']/*[1]");
+                add("//*[@*='shippingPlaceHolderId']");
+                add("//*[@*='iti-eu-label vi-u-flL']");
+                add("//*[@*='availableAtOrFrom']");
+                add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]/span");
+                add("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
+                add("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-crwarranty-subtext']/*")).size(); i++) {
+                    add("//*[@*='vi-crwarranty-subtext']/*[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='w2b-cnt w2b-3 w2b-brdr']/span")).size(); i++) {
+                    add("(//*[@*='w2b-cnt w2b-3 w2b-brdr']/span)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-labels-values__labels col-3']//ancestor::*[@*='ux-textspans']")).size(); i++) {
+                    add("(//*[@*='ux-labels-values__labels col-3']//ancestor::*[@*='ux-textspans'])[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-labels-values__values-content']//parent::*[@*='ux-labels-values__values col-9']//span[@*='img']")).size(); i++) {
+                    add("(//*[@*='ux-labels-values__values-content']//parent::*[@*='ux-labels-values__values col-9']//span[@*='img'])[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-labels-values__values-content']//parent::*[@*='ux-labels-values__values col-9']//span[@*='ux-textspans']")).size(); i++) {
+                    add("(//*[@*='ux-labels-values__values-content']//parent::*[@*='ux-labels-values__values col-9']//span[@*='ux-textspans'])[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyUnitClickable() {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
+                add("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
+                add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]");
+                add("//*[@*='vi-crwarranty-subtext']//parent::a[contains(@href, 'refurbished')]");
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
         }
         return this;
     }
