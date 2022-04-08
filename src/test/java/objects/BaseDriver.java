@@ -19,21 +19,11 @@ public class BaseDriver {
 
         if (browser.equals("")) browser = System.getProperty("testBrowser");
 
-        if (webdrivers.get() == null) {
-            if (browser.equals("chrome")) {
-                webdrivers.set(new ChromeDriver());
-            }
+        if (browser.equals("chrome")) {
+            webdrivers.set(new ChromeDriver());
         }
 
-        WebDriver e = webdrivers.get();
-        close.add(e);
-        return e;
-    }
-
-    public void quit() {
-        for (WebDriver webDriver: close) {
-            webDriver.quit();
-        }
+        return webdrivers.get();
     }
 
     public static BaseDriver getInstance() {

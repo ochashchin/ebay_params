@@ -68,7 +68,7 @@
                             <testLocal>us</testLocal>
                         </systemPropertyVariables>
                         <suiteXmlFiles>
-                            <suiteXmlFile>test_home_internalization.xml</suiteXmlFile>
+                            <suiteXmlFile>test_view_item.xml</suiteXmlFile>
                         </suiteXmlFiles>
                         <skipTests>false</skipTests>
                     </configuration>

@@ -14,7 +14,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsViewPortVisible();
+                .verifyIsViewPortVisible()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -22,7 +23,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsViewPortClickable();
+                .verifyIsViewPortClickable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -30,7 +32,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsViewPortFocusable();
+                .verifyIsViewPortFocusable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -38,7 +41,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsViewPortScrollStateUp();
+                .verifyIsViewPortScrollStateUp()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -46,7 +50,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsViewPortScrollStateDown();
+                .verifyIsViewPortScrollStateDown()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -54,7 +59,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsViewPortHover();
+                .verifyIsViewPortHover()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -66,7 +72,8 @@ public class ViewItemTest extends BaseTest {
                 .verifyIsViewPortSetColor("Green")
                 .verifyIsViewPortSetColor("Gold")
                 .verifyIsViewPortSetColor("Silver")
-                .verifyIsViewPortSetColor("- Select -");
+                .verifyIsViewPortSetColor("- Select -")
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -74,7 +81,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewResourceVisible();
+                .verifyIsEnlargeViewResourceVisible()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -82,7 +90,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewResourceClickable();
+                .verifyIsEnlargeViewResourceClickable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -90,7 +99,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewResourceFocusable();
+                .verifyIsEnlargeViewResourceFocusable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -98,7 +108,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewResourceExpandable();
+                .verifyIsEnlargeViewResourceExpandable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -114,7 +125,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewIntegrationLeft();
+                .verifyIsEnlargeViewIntegrationLeft()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -122,7 +134,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewIntegrationColor();
+                .verifyIsEnlargeViewIntegrationColor()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -130,7 +143,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsEnlargeViewIntegrationFocusToViewport();
+                .verifyIsEnlargeViewIntegrationFocusToViewport()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -141,14 +155,16 @@ public class ViewItemTest extends BaseTest {
                 .verifyIsIconTitleVisible()
                 .verifyIsIconTitleTextVisible()
                 .verifyIsItemTitleVisible()
-                .verifyIsSubTitleVisible();
+                .verifyIsSubTitleVisible()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
     public void test_view_item_title_unit_highlight() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
-                .verifyIsTitleHighlightCopy();
+                .verifyIsTitleHighlightCopy()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -156,7 +172,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActionDetailsVisibility();
+                .verifyIsActionDetailsVisibility()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -172,7 +189,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActionDetailsClickable();
+                .verifyIsActionDetailsClickable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -180,7 +198,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActionDetailsSelectable();
+                .verifyIsActionDetailsSelectable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -188,7 +207,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActionDetailsIntegrationConditionIcon();
+                .verifyIsActionDetailsIntegrationConditionIcon()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -196,7 +216,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActionDetailsIntegrationReadMore();
+                .verifyIsActionDetailsIntegrationReadMore()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -204,7 +225,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActionDetailsIntegrationColor();
+                .verifyIsActionDetailsIntegrationColor()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -215,7 +237,8 @@ public class ViewItemTest extends BaseTest {
                 .verifyIsActionDetailsIntegrationBulkPrice()
                 .verifyIsActionDetailsIntegrationBulkPriceDesc()
                 .verifyIsActionDetailsIntegrationBulkPriceSaving()
-                .verifyIsActionDetailsIntegrationBulkQuantity();
+                .verifyIsActionDetailsIntegrationBulkQuantity()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -224,7 +247,8 @@ public class ViewItemTest extends BaseTest {
                 .open()
                 .scroll()
                 .selectDropDown()
-                .verifyIsActionDetailsSystemQuantityFocusable();
+                .verifyIsActionDetailsSystemQuantityFocusable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -234,7 +258,8 @@ public class ViewItemTest extends BaseTest {
                 .scroll()
                 .selectDropDown()
                 .verifyIsActionDetailsSystemQuantityBoundaryMin()
-                .verifyIsActionDetailsSystemQuantityBoundaryMax();
+                .verifyIsActionDetailsSystemQuantityBoundaryMax()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -245,7 +270,8 @@ public class ViewItemTest extends BaseTest {
                 .selectDropDown()
                 .verifyIsActionDetailsSystemQuantityBoundaryMinInvalid()
                 .verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid()
-                .verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid();
+                .verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -253,7 +279,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActPanelUnitVisible();
+                .verifyIsActPanelUnitVisible()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -261,7 +288,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActPanelUnitClickable();
+                .verifyIsActPanelUnitClickable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -269,7 +297,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsActPanelIntegrationPriceCredit();
+                .verifyIsActPanelIntegrationPriceCredit()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -279,7 +308,8 @@ public class ViewItemTest extends BaseTest {
                 .scroll()
                 .selectDropDown()
                 .click(actPanelBuyItNowBtn)
-                .verifyIsActPanelActionDetailsPositiveIntegrationBuyItNowDialogVisibility();
+                .verifyIsActPanelActionDetailsPositiveIntegrationBuyItNowDialogVisibility()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -289,7 +319,8 @@ public class ViewItemTest extends BaseTest {
                 .scroll()
                 .click(actPanelBuyItNowBtn)
                 .verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility()
-                .verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus();
+                .verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -299,7 +330,8 @@ public class ViewItemTest extends BaseTest {
                 .scroll()
                 .selectDropDown()
                 .click(actPanelAddToCartBtn)
-                .verifyIsActPanelActionDetailsPositiveIntegrationAddToCartDialogVisibility();
+                .verifyIsActPanelActionDetailsPositiveIntegrationAddToCartDialogVisibility()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -309,7 +341,8 @@ public class ViewItemTest extends BaseTest {
                 .scroll()
                 .click(actPanelAddToCartBtn)
                 .verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility()
-                .verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus();
+                .verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -317,7 +350,8 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsWhy2BuyUnitVisibility();
+                .verifyIsWhy2BuyUnitVisibility()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -326,7 +360,8 @@ public class ViewItemTest extends BaseTest {
                 .open()
                 .scroll()
                 .scroll()
-                .verifyIsWhy2BuyUnitClickable();
+                .verifyIsWhy2BuyUnitClickable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -335,7 +370,8 @@ public class ViewItemTest extends BaseTest {
                 .open()
                 .scroll()
                 .scroll()
-                .verifyIsWhy2BuyWarrantyLinkRedirection();
+                .verifyIsWhy2BuyWarrantyLinkRedirection()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -344,7 +380,8 @@ public class ViewItemTest extends BaseTest {
                 .open()
                 .scroll()
                 .scroll()
-                .verifyIsWhy2BuyReturnsLinkRedirection();
+                .verifyIsWhy2BuyReturnsLinkRedirection()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -353,7 +390,8 @@ public class ViewItemTest extends BaseTest {
                 .open()
                 .scroll()
                 .scroll()
-                .verifyIsWhy2BuyLearnMoreLinkRedirection();
+                .verifyIsWhy2BuyLearnMoreLinkRedirection()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -362,7 +400,8 @@ public class ViewItemTest extends BaseTest {
                 .open()
                 .scroll()
                 .scroll()
-                .verifyIsWhy2BuySeeTermsToApplyLinkRedirection();
+                .verifyIsWhy2BuySeeTermsToApplyLinkRedirection()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -370,39 +409,44 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsShopWithConfidenceUnitsVisibility();
+                .verifyIsShopWithConfidenceUnitsVisibility()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_visibility")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_shop_with_confidence_unit_clickable() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsShopWithConfidenceUnitsClickable();
+                .verifyIsShopWithConfidenceUnitsClickable()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_clickable")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_shop_with_integration_refurbished_learn_more_redirection() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsShopWithConfidenceIntegrationRefurbishedLearnMoreRedirection();
+                .verifyIsShopWithConfidenceIntegrationRefurbishedLearnMoreRedirection()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_clickable")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_shop_with_integration_top_rated_plus_learn_more_redirection() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsShopWithConfidenceIntegrationTopRatedPlusLearnMoreRedirection();
+                .verifyIsShopWithConfidenceIntegrationTopRatedPlusLearnMoreRedirection()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_clickable")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_shop_with_integration_money_back_guarantee_redirection() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection();
+                .verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -410,15 +454,17 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsSellerInfoUnitsVisibility();
+                .verifyIsSellerInfoUnitsVisibility()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_seller_info_unit_visibility")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_seller_info_unit_clickable() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsSellerInfoUnitsClickable();
+                .verifyIsSellerInfoUnitsClickable()
+                .quit();
     }
 
     @Test(groups = {"ViewItem"})
@@ -426,23 +472,26 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsSellerInfoIntegrationSellerNameRatingRedirection();
+                .verifyIsSellerInfoIntegrationSellerNameRatingRedirection()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_seller_info_unit_clickable")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_seller_info_integration_visit_store_redirection() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsSellerInfoIntegrationVisitStoreRedirection();
+                .verifyIsSellerInfoIntegrationVisitStoreRedirection()
+                .quit();
     }
 
-    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_seller_info_unit_clickable")
+    @Test(groups = {"ViewItem"})
     public void test_view_item_seller_info_integration_see_other_items_redirection() throws Exception {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .verifyIsSellerInfoIntegrationSeeOtherItemsRedirection();
+                .verifyIsSellerInfoIntegrationSeeOtherItemsRedirection()
+                .quit();
     }
 
 }

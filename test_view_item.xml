@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="test_view_item.xml" verbose="1" parallel="methods" thread-count="6">
+    <listeners>
+        <listener class-name="objects.FailListener"/>
+    </listeners>
     <test name="test_view_item">
         <groups>
             <run>
