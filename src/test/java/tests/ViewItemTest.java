@@ -317,7 +317,6 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(BaseDriver.getInstance().getDriver(""))
                 .open()
                 .scroll()
-                .scroll()
                 .verifyIsWhy2BuyUnitVisibility();
     }
 
@@ -328,6 +327,122 @@ public class ViewItemTest extends BaseTest {
                 .scroll()
                 .scroll()
                 .verifyIsWhy2BuyUnitClickable();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_why2buy_integration_warranty_link_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .scroll()
+                .verifyIsWhy2BuyWarrantyLinkRedirection();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_why2buy_integration_returns_link_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .scroll()
+                .verifyIsWhy2BuyReturnsLinkRedirection();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_why2buy_integration_learn_more_link_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .scroll()
+                .verifyIsWhy2BuyLearnMoreLinkRedirection();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_why2buy_integration_see_terms_to_apply_link_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .scroll()
+                .verifyIsWhy2BuySeeTermsToApplyLinkRedirection();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_shop_with_confidence_unit_visibility() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsShopWithConfidenceUnitsVisibility();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_visibility")
+    public void test_view_item_shop_with_confidence_unit_clickable() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsShopWithConfidenceUnitsClickable();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_clickable")
+    public void test_view_item_shop_with_integration_refurbished_learn_more_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsShopWithConfidenceIntegrationRefurbishedLearnMoreRedirection();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_clickable")
+    public void test_view_item_shop_with_integration_top_rated_plus_learn_more_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsShopWithConfidenceIntegrationTopRatedPlusLearnMoreRedirection();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_shop_with_confidence_unit_clickable")
+    public void test_view_item_shop_with_integration_money_back_guarantee_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_seller_info_unit_visibility() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsSellerInfoUnitsVisibility();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_seller_info_unit_visibility")
+    public void test_view_item_seller_info_unit_clickable() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsSellerInfoUnitsClickable();
+    }
+
+    @Test(groups = {"ViewItem"})
+    public void test_view_item_seller_info_integration_sell_name_rating_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsSellerInfoIntegrationSellerNameRatingRedirection();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_seller_info_unit_clickable")
+    public void test_view_item_seller_info_integration_visit_store_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsSellerInfoIntegrationVisitStoreRedirection();
+    }
+
+    @Test(groups = {"ViewItem"}, dependsOnMethods = "test_view_item_seller_info_unit_clickable")
+    public void test_view_item_seller_info_integration_see_other_items_redirection() throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(""))
+                .open()
+                .scroll()
+                .verifyIsSellerInfoIntegrationSeeOtherItemsRedirection();
     }
 
 }

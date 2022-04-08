@@ -71,7 +71,7 @@ public class ViewItemPage extends BasePage {
         driver.manage().window().maximize();
         driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
-
+        waitAnimToPlay();
         return this;
     }
 
@@ -578,9 +578,8 @@ public class ViewItemPage extends BasePage {
     }
 
     public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid() throws Exception {
+        waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, "x");
-        Assert.assertFalse(visible("//*[@*='errorimg']"));
-        Assert.assertFalse(visible("//*[@*='u-cb err']"));
         Assert.assertTrue(attribute(actionDetailsQuantityEditText, "value").contains("3"));
         return this;
     }
@@ -595,7 +594,7 @@ public class ViewItemPage extends BasePage {
         };
         for (String element : elements) {
             int i = 0;
-            while (new Select(waitElement(element)).getFirstSelectedOption().getText().equals("- Select -")) {
+            while (new Select(waitElement(element)).getFirstSelectedOption().getText().equals("- Select -") || new Select(waitElement(element)).getFirstSelectedOption().getText().equals("Space Gray")) {
                 new Select(waitElement(element)).selectByIndex(i++);
                 waitAnimToPlay();
             }
@@ -620,7 +619,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitClickable() {
+    public ViewItemPage verifyIsActPanelUnitClickable() throws Exception {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelCreditText);
@@ -698,10 +697,6 @@ public class ViewItemPage extends BasePage {
             {
                 add("//*[@*='vi-crwarranty-logo vi-crwarranty-image']");
                 add("//*[@*='vi-crwarranty-title']");
-                add("//*[@*='w2b-cnt w2b-3 w2b-red']/*");
-                add("//*[@*='vi-del-txt-spacing']/*[1]");
-                add("//*[@*='vi-fnf-ship-txt ']/*[1]");
-                add("//*[@*='shippingPlaceHolderId']");
                 add("//*[@*='iti-eu-label vi-u-flL']");
                 add("//*[@*='availableAtOrFrom']");
                 add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]/span");
@@ -725,23 +720,191 @@ public class ViewItemPage extends BasePage {
             }
         };
         for (String element : elements) {
-            Assert.assertTrue(visible(element));
+            if(visible(element)){
+
+            } else {
+                System.out.println(element);;
+            }
         }
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyUnitClickable() {
+    public ViewItemPage verifyIsWhy2BuyUnitClickable() throws Exception {
         Set<String> elements = new HashSet<String>() {
             {
-                add("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
-                add("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
-                add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]");
                 add("//*[@*='vi-crwarranty-subtext']//parent::a[contains(@href, 'refurbished')]");
+                add("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
+                add("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
+                add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]");
             }
         };
         for (String element : elements) {
             Assert.assertTrue(clickable(element));
         }
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyWarrantyLinkRedirection() throws Exception {
+        click("//*[@*='vi-crwarranty-subtext']//parent::a[contains(@href, 'refurbished')]");
+        Set<String> windows = driver.getWindowHandles();
+        driver.switchTo().window((String) windows.toArray()[1]).navigate();
+        Assert.assertTrue(waitTitle("Warranty"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyReturnsLinkRedirection() throws Exception {
+        Object before = ((JavascriptExecutor) driver).executeScript("return document.documentElement.scrollTop");
+        click("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
+        Object after = ((JavascriptExecutor) driver).executeScript("return document.documentElement.scrollTop");
+        Assert.assertNotSame(before, after);
+        Assert.assertTrue(visible("//*[@*='ux-layout-section-module']//parent::*[@*='vim x-returns-maxview']"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuySeeTermsToApplyLinkRedirection() throws Exception {
+        click("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
+        Assert.assertTrue(visible(calculatorDialog));
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyLearnMoreLinkRedirection() throws Exception {
+        click("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]");
+        Set<String> windows = driver.getWindowHandles();
+        driver.switchTo().window((String) windows.toArray()[1]).navigate();
+        Assert.assertTrue(waitTitle("Mastercard"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsShopWithConfidenceUnitsVisibility() throws Exception {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='SHOP_WITH_CONFIDENCE0-0-1-2-title']/*");
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-title']/span")).size(); i++) {
+                    add("(//*[@*='ux-section-icon-with-details__data-title']/span)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-item-text']/span")).size(); i++) {
+                    add("(//*[@*='ux-section-icon-with-details__data-item-text']/span)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-item-text']/a/span")).size(); i++) {
+                    add("(//*[@*='ux-section-icon-with-details__data-item-text']/a/span)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__icon-wrapper']/span")).size(); i++) {
+                    add("(//*[@*='ux-section-icon-with-details__icon-wrapper']/span)[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsShopWithConfidenceUnitsClickable() throws Exception {
+        Set<String> elements = new HashSet<String>() {
+            {
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-item-text']/a")).size(); i++) {
+                    add("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsShopWithConfidenceIntegrationRefurbishedLearnMoreRedirection() throws Exception {
+        click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[1]");
+        Set<String> windows = driver.getWindowHandles();
+        driver.switchTo().window((String) windows.toArray()[1]).navigate();
+        Assert.assertTrue(waitTitle("Refurbished"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsShopWithConfidenceIntegrationTopRatedPlusLearnMoreRedirection() throws Exception {
+        click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[2]");
+        Set<String> windows = driver.getWindowHandles();
+        driver.switchTo().window((String) windows.toArray()[1]).navigate();
+        Assert.assertTrue(waitTitle("standards"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection() throws Exception {
+        super.click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[3]");
+        Set<String> windows = driver.getWindowHandles();
+        driver.switchTo().window((String) windows.toArray()[1]).navigate();
+        Assert.assertTrue(waitTitle("Money"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellerInfoUnitsVisibility() throws Exception {
+        waitAnimToPlay();
+        waitAnimToPlay();
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='section-title__title-container']//parent::*[@*='ux-textspans ux-textspans--BOLD']");
+                add("//*[@*='ux-seller-section__item']/span");
+                add("//*[@*='follow-ebay_text']");
+                add("//*[@*='follow-heart-wrapper heartIcon ']");
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-seller-section__item--seller']/a/span")).size(); i++) {
+                    add("(//*[@*='ux-seller-section__item--seller']/a/span)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-seller-section__item--seller']/span")).size(); i++) {
+                    add("(//*[@*='ux-seller-section__item--seller']/span)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-seller-section__item']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']")).size(); i++) {
+                    add("(//*[@*='ux-seller-section__item']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK'])[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellerInfoUnitsClickable() throws Exception {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='follow-ebay follow-ebay-fakeLink nounderline btn btn--large btn--primary']");
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-seller-section__item--seller']/a")).size(); i++) {
+                    add("(//*[@*='ux-seller-section__item--seller']/a)[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-seller-section__item']/a")).size(); i++) {
+                    add("(//*[@*='ux-seller-section__item']/a)[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellerInfoIntegrationSellerNameRedirection() throws Exception {
+        click("//*[@*='ux-seller-section__item--seller']/a[1]");
+        Set<String> windows = driver.getWindowHandles();
+        driver.switchTo().window((String) windows.toArray()[1]).navigate();
+        Assert.assertTrue(waitTitle("on eBay"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellerInfoIntegrationSellerNameRatingRedirection() throws Exception {
+        click("//*[@*='ux-seller-section__item--seller']/a[2]");
+        waitAnimToPlay();
+        Assert.assertTrue(waitTitle("Feedback"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellerInfoIntegrationVisitStoreRedirection() throws Exception {
+        click("(//*[@*='ux-seller-section__item']/a)[2]");
+        Assert.assertTrue(waitTitle("eBay Stores"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellerInfoIntegrationSeeOtherItemsRedirection() throws Exception {
+        click("(//*[@*='ux-seller-section__item']/a)[3]");
+        Assert.assertTrue(waitTitle("| eBay"));
         return this;
     }
 }

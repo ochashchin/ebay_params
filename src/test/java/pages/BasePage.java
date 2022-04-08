@@ -21,7 +21,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 3);
+        wait = new WebDriverWait(driver, 5);
         fWait = new FluentWait(driver);
         action = new Actions(driver);
     }
@@ -40,7 +40,7 @@ public class BasePage {
         try {
             WebElement result = waitElement(xPath);
             result.click();
-            Log.printLn("Clicked on " + result.getText());
+            Log.printLn("Clicked on " + result.toString());
         } catch (Exception e) {
             Log.printLn("Cannot click on " + " because: " + e);
             throw new Exception();
@@ -93,7 +93,7 @@ public class BasePage {
         }
     }
 
-    public boolean clickable(String xPath) {
+    public boolean clickable(String xPath) throws Exception{
         try {
             WebElement result = wait.until(ExpectedConditions.elementToBeClickable(waitElement(xPath)));
             if (result != null){
@@ -102,7 +102,7 @@ public class BasePage {
             }
         } catch (Exception e) {
             Log.printLn("Element not clickable, because: " + e);
-            return false;
+            throw new Exception();
         }
         return false;
     }
@@ -165,6 +165,17 @@ public class BasePage {
             }
         } catch (Exception e) {
             Log.printLn("Element not focused, because: " + e);
+            throw new Exception();
+        }
+    }
+
+    public boolean waitTitle(String title) throws Exception {
+        try {
+            wait.until(ExpectedConditions.titleContains(title));
+            Log.printLn("Title: " + driver.getTitle());
+            return true;
+        } catch (Exception e) {
+            Log.printLn("Cannot match title, because: " + e);
             throw new Exception();
         }
     }
