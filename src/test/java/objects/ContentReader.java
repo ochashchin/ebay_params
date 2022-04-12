@@ -18,7 +18,12 @@ public class ContentReader {
         return new FileInputStream(path);
     }
 
-    public static String getMethodName() {
-        return Thread.currentThread().getStackTrace()[2].getMethodName();
+    public static String getMethodName(int n) {
+        return Thread.currentThread().getStackTrace()[n].getMethodName();
+    }
+
+    public static String getClassName(int n) {
+        String s = Thread.currentThread().getStackTrace()[n].getFileName();
+        return s.substring(0, s.lastIndexOf('.'));
     }
 }

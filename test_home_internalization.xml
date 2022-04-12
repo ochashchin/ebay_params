@@ -1,7 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="test_param.xml" verbose="1" parallel="tests" thread-count="6">
     <test name="test_home_internalization.xml">
-        <parameter name="browser" value=""/>
         <parameter name="local" value=""/>
         <groups>
             <run>

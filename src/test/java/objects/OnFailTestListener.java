@@ -8,10 +8,10 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class FailListener implements ITestListener {
+public class OnFailTestListener implements ITestListener {
 
-    String path = System.getProperty("user.dir");
-    PrintWriter writeFile;
+    private String path = System.getProperty("user.dir");
+    private PrintWriter writeFile;
     private File file;
 
     @Override
@@ -30,11 +30,6 @@ public class FailListener implements ITestListener {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-
     }
 
     @Override

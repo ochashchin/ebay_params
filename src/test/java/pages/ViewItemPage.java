@@ -11,9 +11,11 @@ import java.time.Duration;
 import java.util.*;
 import java.util.List;
 
+import static objects.ContentReader.*;
+
 public class ViewItemPage extends BasePage {
 
-    public static final String baseURL = "https://www.ebay.com/itm/175037940958";
+    public static final String baseURL = "itm/175037940958";
     public static final String viewPortList = "(//ul[@id='vertical-align-items-viewport']//ancestor::a[@class='pic pic1'])";
     public static final String viewPortDown = "//button[@class='v-pic-down']";
     public static final String viewPortUp = "//button[@class='v-pic-up']";
@@ -66,8 +68,12 @@ public class ViewItemPage extends BasePage {
         super(driver);
     }
 
-    public ViewItemPage open() throws Exception, Error {
-        get(baseURL);
+    public ViewItemPage open(String local) throws Exception, Error {
+        if (local == null || local.equals(""))
+            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
+        else
+            config.load(getPropertyFile(getClassName(2), local));
+        get(config.getProperty("url") + baseURL);
         driver.manage().window().maximize();
         driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
@@ -901,6 +907,19 @@ public class ViewItemPage extends BasePage {
     public ViewItemPage verifyIsSellerInfoIntegrationSeeOtherItemsRedirection() throws Exception, Error {
         click("(//*[@*='ux-seller-section__item']/a)[3]");
         Assert.assertTrue(waitTitle("| eBay"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsSellNowVisibility() throws Exception, Error {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='inst_sale_msg']");
+                add("(//*[contains(@*,'vi-slt-c vi-slt-instSale')]//child::span[2])[1]");
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
         return this;
     }
 

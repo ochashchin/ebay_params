@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Properties;
 import java.util.function.Function;
 
 public class BasePage {
@@ -16,6 +17,7 @@ public class BasePage {
     public WebDriverWait wait;
     public FluentWait fWait;
     public Actions action;
+    Properties config = new Properties();
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

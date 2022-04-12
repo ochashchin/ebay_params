@@ -7,9 +7,10 @@ import org.testng.Assert;
 
 import java.time.Duration;
 
-public class HomePage extends BasePage {
+import static objects.ContentReader.getClassName;
+import static objects.ContentReader.getPropertyFile;
 
-    public static final String baseUrl = "https://www.ebay.com/";
+public class HomePage extends BasePage {
 
     private String COUNTRY = "//div[@class='gf-flags-wpr']/a";
 
@@ -17,8 +18,13 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    public HomePage open(String URL) throws Exception {
-        get(URL);
+    public HomePage open(String local) throws Exception {
+        if (local == null || local.equals(""))
+            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
+        else
+            config.load(getPropertyFile(getClassName(2), local));
+
+        get(config.getProperty("url"));
         driver.manage().window().maximize();
         driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
@@ -26,12 +32,15 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public HomePage verifyCountry(String parameter) throws Exception {
+    public HomePage verifyCountry() throws Exception {
 
         driver.findElement(By.tagName("body")).sendKeys(Keys.PAGE_DOWN);
 
-        Assert.assertEquals(attribute(COUNTRY, "href"), parameter);
+        Assert.assertEquals(attribute(COUNTRY, "href"), config.getProperty("url"));
         return this;
     }
 
+    public void quit() {
+        driver.quit();
+    }
 }

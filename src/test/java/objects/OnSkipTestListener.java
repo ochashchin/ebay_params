@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SkipListener implements IMethodInterceptor {
+public class OnSkipTestListener implements IMethodInterceptor {
 
     String path = System.getProperty("user.dir");
 
