@@ -6,12 +6,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.ViewItemPage;
 
-import static pages.ViewItemPage.actPanelAddToCartBtn;
-import static pages.ViewItemPage.actPanelBuyItNowBtn;
-
 public class ViewItemTest extends BaseTest {
-//
+
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -21,6 +19,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -28,8 +27,9 @@ public class ViewItemTest extends BaseTest {
 //                .verifyIsViewPortClickable()
 //                .quit();
 //    }
-//
+
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_unit_focusable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -39,6 +39,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_integration_up(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -48,6 +49,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_integration_down(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -57,6 +59,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_unit_hover(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -66,6 +69,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_viewport_integration_color(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -74,11 +78,12 @@ public class ViewItemTest extends BaseTest {
 //                .verifyIsViewPortSetColor("Green")
 //                .verifyIsViewPortSetColor("Gold")
 //                .verifyIsViewPortSetColor("Silver")
-//                .verifyIsViewPortSetColor("- Select -")
+//                .verifyIsViewPortSetColor("select")
 //                .quit();
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -88,6 +93,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -97,6 +103,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_unit_focusable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -104,8 +111,9 @@ public class ViewItemTest extends BaseTest {
 //                .verifyIsEnlargeViewResourceFocusable()
 //                .quit();
 //    }
-//
+
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_integration_expand(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -115,14 +123,17 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_integration_right(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
 //                .scroll()
-//                .verifyIsEnlargeViewIntegrationRight();
+//                .verifyIsEnlargeViewIntegrationRight()
+//                .quit();
 //    }
-//
+
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_integration_left(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -132,6 +143,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_integration_color(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -141,6 +153,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_enlarge_integration_focus_to_viewport(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -149,19 +162,30 @@ public class ViewItemTest extends BaseTest {
 //                .quit();
 //    }
 //
-//    @Test(groups = {"ViewItem"})
-//    public void test_view_item_item_title_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
+//    @Test(groups = {"ViewItem", "US"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_item_title_refurbished_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
 //                .scroll()
 //                .verifyIsIconTitleVisible()
 //                .verifyIsIconTitleTextVisible()
+//                .quit();
+//    }
+//
+//    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_item_title_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+//                .open(local)
+//                .scroll()
 //                .verifyIsItemTitleVisible()
 //                .verifyIsSubTitleVisible()
 //                .quit();
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_title_unit_highlight(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -170,6 +194,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_unit_visibility(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -178,15 +203,38 @@ public class ViewItemTest extends BaseTest {
 //                .quit();
 //    }
 //
+//    @Test(groups = {"ViewItem", "US"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_action_details_us_unit_visibility(@Optional() String browser, @Optional() String local) throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+//                .open(local)
+//                .scroll()
+//                .verifyIsActionDetailsUSVisibility()
+//                .quit();
+//    }
+
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_unit_focusable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
 //                .scroll()
-//                .verifyIsActionDetailsFocusable();
+//                .verifyIsActionDetailsFocusable()
+//                .quit();
+//    }
+//
+//    @Test(groups = {"ViewItem", "US"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_action_details_us_unit_focusable(@Optional() String browser, @Optional() String local) throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+//                .open(local)
+//                .scroll()
+//                .verifyIsActionDetailsUSFocusable()
+//                .quit();
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -195,7 +243,18 @@ public class ViewItemTest extends BaseTest {
 //                .quit();
 //    }
 //
+//    @Test(groups = {"ViewItem", "US"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_action_details_us_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+//                .open(local)
+//                .scroll()
+//                .verifyIsActionDetailsUSClickable()
+//                .quit();
+//    }
+//
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_unit_selectable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -204,7 +263,8 @@ public class ViewItemTest extends BaseTest {
 //                .quit();
 //    }
 //
-//    @Test(groups = {"ViewItem"})
+//    @Test(groups = {"ViewItem", "US"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_integration_condition_icon(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -214,6 +274,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_integration_read_more(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -223,6 +284,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_integration_color(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -231,7 +293,8 @@ public class ViewItemTest extends BaseTest {
 //                .quit();
 //    }
 //
-//    @Test(groups = {"ViewItem"})
+//    @Test(groups = {"ViewItem", "US"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_integration_bulk(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -244,6 +307,7 @@ public class ViewItemTest extends BaseTest {
 //    }
 //
 //    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
 //    public void test_view_item_action_details_system_quantity_focusable(@Optional() String browser, @Optional() String local) throws Exception {
 //        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
 //                .open(local)
@@ -252,29 +316,42 @@ public class ViewItemTest extends BaseTest {
 //                .verifyIsActionDetailsSystemQuantityFocusable()
 //                .quit();
 //    }
-//
-//    @Test(groups = {"ViewItem"})
-//    public void test_view_item_action_details_system_quantity_boundary_positive(@Optional() String browser, @Optional() String local) throws Exception {
-//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
-//                .open(local)
-//                .scroll()
-//                .selectDropDown()
-//                .verifyIsActionDetailsSystemQuantityBoundaryMin()
-//                .verifyIsActionDetailsSystemQuantityBoundaryMax()
-//                .quit();
-//    }
-//
-//    @Test(groups = {"ViewItem"})
-//    public void test_view_item_action_details_system_quantity_boundary_negative(@Optional() String browser, @Optional() String local) throws Exception {
-//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
-//                .open(local)
-//                .scroll()
-//                .selectDropDown()
-//                .verifyIsActionDetailsSystemQuantityBoundaryMinInvalid()
-//                .verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid()
-//                .verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid()
-//                .quit();
-//    }
+
+    @Test(groups = {"ViewItem"})
+    @Parameters({"browser", "local"})
+    public void test_view_item_action_details_system_quantity_boundary_positive(@Optional() String browser, @Optional() String local) throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+                .open(local)
+                .scroll()
+                .selectDropDown()
+                .verifyIsActionDetailsSystemQuantityBoundaryMin()
+                .verifyIsActionDetailsSystemQuantityBoundaryMax()
+                .quit();
+    }
+
+    @Test(groups = {"ViewItem", "UK", "DE", "AU"})
+    @Parameters({"browser", "local"})
+    public void test_view_item_action_details_system_quantity_boundary_negative(@Optional() String browser, @Optional() String local) throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+                .open(local)
+                .scroll()
+                .selectDropDown()
+                .verifyIsActionDetailsSystemQuantityBoundaryMinInvalid()
+                .verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid()
+                .verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid()
+                .quit();
+    }
+
+    @Test(groups = {"ViewItem", "US"})
+    @Parameters({"browser", "local"})
+    public void test_view_item_action_details_us_system_quantity_boundary_negative(@Optional() String browser, @Optional() String local) throws Exception {
+        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+                .open(local)
+                .scroll()
+                .selectDropDown()
+                .verifyIsActionDetailsSystemQuantityUSBoundaryDefaultInvalid()
+                .quit();
+    }
 //
 //    @Test(groups = {"ViewItem"})
 //    public void test_view_item_act_panel_units_visibility(@Optional() String browser, @Optional() String local) throws Exception {
@@ -497,14 +574,23 @@ public class ViewItemTest extends BaseTest {
 //                .quit();
 //    }
 
-    @Test(groups = {"ViewItem"})
-    @Parameters({"browser", "local"})
-    public void test_view_item_sell_now_visibility(@Optional() String browser, @Optional() String local) throws Exception {
-        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
-                .open(local)
-                .scroll()
-                .verifyIsSellNowVisibility()
-                .quit();
-    }
-
+//    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_sell_now_visibility(@Optional() String browser, @Optional() String local) throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+//                .open(local)
+//                .scroll()
+//                .verifyIsSellNowVisibility()
+//                .quit();
+//    }
+//
+//    @Test(groups = {"ViewItem"})
+//    @Parameters({"browser", "local"})
+//    public void test_view_item_sell_now_clickable(@Optional() String browser, @Optional() String local) throws Exception {
+//        new ViewItemPage(BaseDriver.getInstance().getDriver(browser))
+//                .open(local)
+//                .scroll()
+//                .verifyIsSellNowClickable()
+//                .quit();
+//    }
 }

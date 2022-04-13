@@ -74,9 +74,9 @@ public class ViewItemPage extends BasePage {
         else
             config.load(getPropertyFile(getClassName(2), local));
         get(config.getProperty("url") + baseURL);
+        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         driver.manage().window().maximize();
         driver.navigate().refresh();
-        driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         waitAnimToPlay();
         return this;
     }
@@ -172,6 +172,7 @@ public class ViewItemPage extends BasePage {
         waitAnimToPlay();
         click(viewPortList + "[" + index + "]");
         waitAnimToPlay();
+        color = config.getProperty(color, color);
         Assert.assertTrue(color.contains(new Select(waitElement(actionDetailsColors)).getFirstSelectedOption().getText()));
         return this;
     }
@@ -221,12 +222,14 @@ public class ViewItemPage extends BasePage {
     public ViewItemPage verifyIsEnlargeViewResourceExpandable() throws Exception, Error {
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
-        click(enlargeViewRight);
-        for (int i = 2; i <= size; i++) {
-            click(enlargeViewButton);
-            waitAnimToPlay();
-            Assert.assertTrue(visible(expandView));
-            click(expandViewClose);
+        for (int i = 1; i <= size; i++) {
+            if (i >= 2) {
+                click(enlargeViewFocus);
+                waitAnimToPlay();
+                Assert.assertTrue(visible(expandView));
+                waitAnimToPlay();
+                click(expandViewClose);
+            }
             if (i != size) {
                 click(enlargeViewRight);
                 waitAnimToPlay();
@@ -278,7 +281,7 @@ public class ViewItemPage extends BasePage {
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
         HashMap<Integer, String> map = new HashMap<Integer, String>() {
             {
-                put(1, "- Select -");
+                put(1, config.getProperty("select"));
                 put(4, "Space Gray");
                 put(6, "Green");
                 put(9, "Gold");
@@ -350,12 +353,29 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
+    public ViewItemPage verifyIsActionDetailsUSVisibility() throws Exception, Error {
+        List<String> order = new ArrayList<String>() {
+            {
+                add(actionDetailsConditionDescTextIcon);
+                add(actionDetailsBulkText);
+                for (int i = 0; i < driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
+                    add("(//*[@*='vi-vpqp-pills-" + i + "'])//*[@*='vi-vpqp-text']");
+                    add("(//*[@*='vi-vpqp-pills-" + i + "'])//*[@*='vi-vpqp-text vi-vpqp-price']");
+                }
+                add(actionDetailsQuantityDescText);
+            }
+        };
+        for (String e : order) {
+            Assert.assertTrue(visible(e));
+        }
+        return this;
+    }
+
     public ViewItemPage verifyIsActionDetailsVisibility() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionText);
                 add(actionDetailsConditionDescText);
-                add(actionDetailsConditionDescTextIcon);
                 add(actionDetailsConditionSellerNote);
                 add(actionDetailsReadMore);
                 add(actionDetailsNetworkText);
@@ -364,14 +384,8 @@ public class ViewItemPage extends BasePage {
                 add(actionDetailsNetworkDropDown);
                 add(actionDetailsStorageDropDown);
                 add(actionDetailsColorDropDown);
-                add(actionDetailsBulkText);
-                for (int i = 0; i < driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
-                    add("(//*[@*='vi-vpqp-pills-" + i + "'])//*[@*='vi-vpqp-text']");
-                    add("(//*[@*='vi-vpqp-pills-" + i + "'])//*[@*='vi-vpqp-text vi-vpqp-price']");
-                }
                 add(actionDetailsQuantityText);
                 add(actionDetailsQuantityEditText);
-                add(actionDetailsQuantityDescText);
                 add(actionDetailsQuantityAvailableText);
                 add(actionDetailsQuantitySoldText);
                 add(actionDetailsQuantityFeedbackText);
@@ -383,17 +397,28 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsClickable() throws Exception, Error {
+    public ViewItemPage verifyIsActionDetailsUSClickable() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionDescTextIconButton);
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
+                    add("(//*[@*='vi-vpqp-wrapper']/*)" + "[" + i + "]");
+                }
+            }
+        };
+        for (String e : order) {
+            Assert.assertTrue(clickable(e));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActionDetailsClickable() throws Exception, Error {
+        List<String> order = new ArrayList<String>() {
+            {
                 add(actionDetailsReadMore);
                 add(actionDetailsNetworkDropDown);
                 add(actionDetailsStorageDropDown);
                 add(actionDetailsColorDropDown);
-                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
-                    add("(//*[@*='vi-vpqp-wrapper']/*)" + "[" + i + "]");
-                }
                 add(actionDetailsQuantitySoldText);
                 add(actionDetailsQuantityFeedbackText);
             }
@@ -404,10 +429,22 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsFocusable() throws Exception, Error {
+    public ViewItemPage verifyIsActionDetailsUSFocusable() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionDescTextIconButton);
+            }
+        };
+        for (String e : order) {
+            pressKeys(e, Keys.SHIFT);
+            Assert.assertTrue(focusable(e));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActionDetailsFocusable() throws Exception, Error {
+        List<String> order = new ArrayList<String>() {
+            {
                 add(actionDetailsNetworkDropDown);
                 add(actionDetailsStorageDropDown);
                 add(actionDetailsColorDropDown);
@@ -452,7 +489,7 @@ public class ViewItemPage extends BasePage {
         Set<String> set = new HashSet<>();
         HashMap<Integer, String> map = new HashMap<Integer, String>() {
             {
-                put(0, "- Select -");
+                put(0, config.getProperty("select"));
                 put(1, "Space Gray");
                 put(2, "Green");
                 put(3, "Gold");
@@ -583,10 +620,17 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid() throws Exception, Error {
+    public ViewItemPage verifyIsActionDetailsSystemQuantityUSBoundaryDefaultInvalid() throws Exception, Error {
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, "x");
         Assert.assertTrue(attribute(actionDetailsQuantityEditText, "value").contains("3"));
+        return this;
+    }
+
+    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid() throws Exception, Error {
+        waitElement(actionDetailsQuantityEditText).clear();
+        pressKeys(actionDetailsQuantityEditText, "x");
+        Assert.assertTrue(attribute("//*[@*='qtyErrMsg']/div", "textContent").contains("1"));
         return this;
     }
 
@@ -600,7 +644,7 @@ public class ViewItemPage extends BasePage {
         };
         for (String element : elements) {
             int i = 0;
-            while (new Select(waitElement(element)).getFirstSelectedOption().getText().equals("- Select -") || new Select(waitElement(element)).getFirstSelectedOption().getText().equals("Space Gray")) {
+            while (new Select(waitElement(element)).getFirstSelectedOption().getText().equals(config.getProperty("select")) || new Select(waitElement(element)).getFirstSelectedOption().getText().equals("Space Gray")) {
                 new Select(waitElement(element)).selectByIndex(i++);
                 waitAnimToPlay();
             }
@@ -922,6 +966,20 @@ public class ViewItemPage extends BasePage {
         }
         return this;
     }
+
+    public ViewItemPage verifyIsSellNowClickable() throws Exception, Error {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='inst_sale_msg']");
+                add("(//*[contains(@*,'vi-slt-c vi-slt-instSale')]//child::span[2])[1]");
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
+        }
+        return this;
+    }
+
 
     public void quit() {
         driver.quit();

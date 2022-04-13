@@ -3,12 +3,21 @@
   <component name="ResourceBundleManager">
     <file url="file://$PROJECT_DIR$/src/test/resources/HomePage_de.properties" />
     <file url="file://$PROJECT_DIR$/src/test/resources/HomePage_uk.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/ViewItemPage_de.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/ViewItemPage_uk.properties" />
     <custom-resource-bundle>
       <file value="file://$PROJECT_DIR$/src/test/resources/HomePage_au.properties" />
       <file value="file://$PROJECT_DIR$/src/test/resources/HomePage_de.properties" />
       <file value="file://$PROJECT_DIR$/src/test/resources/HomePage_uk.properties" />
       <file value="file://$PROJECT_DIR$/src/test/resources/HomePage_us.properties" />
       <base-name>HomePage</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/test/resources/ViewItemPage_au.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resources/ViewItemPage_de.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resources/ViewItemPage_uk.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resources/ViewItemPage_us.properties" />
+      <base-name>ViewItemPage</base-name>
     </custom-resource-bundle>
   </component>
 </project>

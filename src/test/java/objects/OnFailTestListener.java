@@ -4,42 +4,44 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class OnFailTestListener implements ITestListener {
 
     private String path = System.getProperty("user.dir");
     private PrintWriter writeFile;
-    private File file;
+    private String output;
 
     @Override
     public void onTestStart(ITestResult result) {
-        file = new File(path + "/src/test/resources/" + result.getTestContext().getCurrentXmlTest().getName() + ".txt");
-        if (file.isFile()) {
-            try {
-                Files.delete(Paths.get(file.getAbsolutePath()));
-            } catch (IOException e) {
-                e.printStackTrace();
+        output = "";
+    }
+
+    @Override
+    public void onTestFailure(ITestResult result) {
+        output += result.getMethod().getMethodName() + "\n";
+    }
+
+    @Override
+    public void onFinish(ITestContext context) {
+        String s = context.getCurrentXmlTest().getName();
+        File testDir = new File(path + "/src/test/resources/" + s.substring(0, s.lastIndexOf('_')));
+        File file = new File(path + "/src/test/resources/" + s.substring(0, s.lastIndexOf('_')) + "/" + context.getCurrentXmlTest().getName() + ".txt");
+        if (output.length() > 0) {
+            if (!testDir.exists()) {
+                testDir.mkdirs();
             }
-        } else {
             try {
                 writeFile = new PrintWriter(file, "UTF-8");
             } catch (FileNotFoundException | UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
+            writeFile.print(output);
+            writeFile.close();
         }
-    }
-
-    @Override
-    public void onTestFailure(ITestResult result) {
-        writeFile.println(result.getMethod().getMethodName());
-    }
-
-    @Override
-    public void onFinish(ITestContext context) {
-        writeFile.close();
     }
 }
 

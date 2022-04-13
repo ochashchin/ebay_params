@@ -212,4 +212,17 @@ public class BasePage {
         } catch (Exception e) {
         }
     }
+    public void waitLongAnimToPlay() {
+        fWait.withTimeout(Duration.ofMillis(1200));
+        fWait.pollingEvery(Duration.ofMillis(1200));
+        fWait.ignoring(NoSuchElementException.class);
+        try {
+            fWait.until(new Function() {
+                public WebElement apply(Object o) {
+                    return driver.findElement(By.xpath(""));
+                }
+            });
+        } catch (Exception e) {
+        }
+    }
 }

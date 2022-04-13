@@ -1,8 +1,6 @@
 package objects;
 
-import org.testng.IMethodInstance;
-import org.testng.IMethodInterceptor;
-import org.testng.ITestContext;
+import org.testng.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,13 +10,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OnSkipTestListener implements IMethodInterceptor {
+public class OnSkipTestListener implements IMethodInterceptor, ITestListener  {
 
-    String path = System.getProperty("user.dir");
-
+    private String path = System.getProperty("user.dir");
+    private File testFile;
     @Override
     public List<IMethodInstance> intercept(List<IMethodInstance> list, ITestContext context) {
-        File file = new File(path + "/src/test/resources/" + context.getCurrentXmlTest().getName() + ".txt");
+
+        String testName = context.getCurrentXmlTest().getName();
+        testFile = new File(path + "/src/test/resources/" + testName.substring(0, testName.lastIndexOf('_')) + "/" + testName + ".txt");
+
         List<IMethodInstance> result = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
@@ -27,18 +28,27 @@ public class OnSkipTestListener implements IMethodInterceptor {
             List<String> grps = Arrays.asList(instns.getMethod().getConstructorOrMethod().getMethod().getName());
 
             try {
-                if (file.isFile()) {
-                    if (Files.lines(Paths.get(file.getAbsolutePath())).anyMatch(grps::contains)) {
+                if (testFile.isFile()) {
+                    if (Files.lines(Paths.get(testFile.getAbsolutePath())).anyMatch(grps::contains)) {
                         result.add(instns);
                     }
-                } else {
-                    result.add(instns);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         return result;
+    }
+
+    @Override
+    public void onTestSuccess(ITestResult result) {
+        if (testFile.isFile()) {
+            try {
+                Files.delete(Paths.get(testFile.getAbsolutePath()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
