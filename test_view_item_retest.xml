@@ -7,9 +7,7 @@
         <parameter name="local" value="uk"/>
         <groups>
             <run>
-                <include name="ViewItem"/>
                 <include name="UK"/>
-                <exclude name="US"/>
             </run>
         </groups>
         <classes>
@@ -20,9 +18,7 @@
         <parameter name="local" value="au"/>
         <groups>
             <run>
-                <include name="ViewItem"/>
                 <include name="AU"/>
-                <exclude name="US"/>
             </run>
         </groups>
         <classes>
@@ -33,9 +29,7 @@
         <parameter name="local" value="de"/>
         <groups>
             <run>
-                <include name="ViewItem"/>
                 <include name="DE"/>
-                <exclude name="US"/>
             </run>
         </groups>
         <classes>
@@ -46,11 +40,7 @@
         <parameter name="local" value="us"/>
         <groups>
             <run>
-                <include name="ViewItem"/>
                 <include name="US"/>
-                <exclude name="UK"/>
-                <exclude name="AU"/>
-                <exclude name="DE"/>
             </run>
         </groups>
         <classes>

@@ -55,7 +55,7 @@ public class ViewItemPage extends BasePage {
     public static final String actionDetailsQuantityFeedbackText = "//*[@*='byrfdbk_atf_lnk_sm']";
     public static final String dialogCondition = "//*[@*='lightbox-dialog__window lightbox-dialog__window--fade keyboard-trap--active']";
     public static final String actPanelPriceText = "//*[@*='lbl-value-set']/*[1]";
-    public static final String actPanelPriceInt = "//*[@*='vi-vpo-now u-flL w29 vi-price']/*[1]";
+    public static final String actPanelPriceInt = "//*[@*='mainPrice']/*[1]/*[1]";
     public static final String actPanelCreditText = "//*[@*='vi-ppc-buybox-msg']/*[1]";
     public static final String actPanelBuyItNowBtn = "//*[@*='binBtn_btn']";
     public static final String actPanelAddToCartBtn = "//*[@*='atcRedesignId_btn']";
@@ -652,12 +652,24 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitVisible() throws Exception, Error {
+    public ViewItemPage verifyIsActPanelUnitSpecificVisible() throws Exception, Error {
+        List<String> elements = new ArrayList<String>() {
+            {
+                add("//*[@*='mainPrice']/*[1]/*[5]");
+                add("//*[@*='mainPrice']/*[1]/*[5]/*[1]");
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelUnitBasicVisible() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelPriceText);
                 add(actPanelPriceInt);
-                add(actPanelCreditText);
                 add(actPanelBuyItNowBtn);
                 add(actPanelAddToCartBtn);
                 add(actPanelAddToWatchListBtn);
@@ -669,13 +681,36 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitClickable() throws Exception, Error {
+    public ViewItemPage verifyIsActPanelUnitUSVisible() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelCreditText);
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelUnitBasicClickable() throws Exception, Error {
+        List<String> elements = new ArrayList<String>() {
+            {
                 add(actPanelBuyItNowBtn);
                 add(actPanelAddToCartBtn);
                 add(actPanelAddToWatchListBtn);
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsActPanelUnitUSClickable() throws Exception, Error {
+        List<String> elements = new ArrayList<String>() {
+            {
+                add(actPanelCreditText);
             }
         };
         for (String element : elements) {
@@ -745,6 +780,31 @@ public class ViewItemPage extends BasePage {
     public ViewItemPage verifyIsWhy2BuyUnitVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
+                add("//*[@*='shippingSummary']//ancestor::*[@*='shippingPlaceHolderId']");
+                add("//*[@*='shippingSummary']//ancestor::*[@*='sh_gr_bld_new']");
+                add("//*[@*='shippingSummary']//ancestor::*[@*='vi-del-ship-txt']");
+                add("//*[@*='itemLocation']//ancestor::*[@*='iti-eu-label vi-u-flL']");
+                add("//*[@*='itemLocation']//ancestor::*[@*='availableAtOrFrom']");
+                add("//*[@*='vim x-returns-minview']//ancestor::*[@*='ux-labels-values__labels-content']//*[@*='ux-textspans']");
+                add("//*[@*='vim x-returns-minview']//ancestor::*[@*='ux-action']");
+                add("//*[@*='vim d-payments-minview']//ancestor::*[@*='ux-labels-values__labels-content']//span");
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vim x-returns-minview']//ancestor::*[@*='ux-textspans']")).size(); i++) {
+                    add("(//*[@*='vim x-returns-minview']//ancestor::*[@*='ux-textspans'])[" + i + "]");
+                }
+                for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vim d-payments-minview']//ancestor::*[@*='ux-labels-values__values-content']//*[@*='img']")).size(); i++) {
+                    add("(//*[@*='vim d-payments-minview']//ancestor::*[@*='ux-labels-values__values-content']//*[@*='img'])[" + i + "]");
+                }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyUnitUSVisibility() throws Exception, Error {
+        Set<String> elements = new HashSet<String>() {
+            {
                 add("//*[@*='vi-crwarranty-logo vi-crwarranty-image']");
                 add("//*[@*='vi-crwarranty-title']");
                 add("//*[@*='iti-eu-label vi-u-flL']");
@@ -775,13 +835,25 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyUnitClickable() throws Exception, Error {
+    public ViewItemPage verifyIsWhy2BuyUnitUSClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='vi-crwarranty-subtext']//parent::a[contains(@href, 'refurbished')]");
                 add("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
                 add("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
                 add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]");
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(clickable(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhy2BuyUnitClickable() throws Exception, Error {
+        Set<String> elements = new HashSet<String>() {
+            {
+                add("//*[@*='vim x-returns-minview']//ancestor::a");
             }
         };
         for (String element : elements) {
@@ -800,7 +872,7 @@ public class ViewItemPage extends BasePage {
 
     public ViewItemPage verifyIsWhy2BuyReturnsLinkRedirection() throws Exception, Error {
         Object before = ((JavascriptExecutor) driver).executeScript("return document.documentElement.scrollTop");
-        click("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
+        click("//*[@*='vim x-returns-minview']//ancestor::span[contains(@*, 'SECONDARY')]");
         Object after = ((JavascriptExecutor) driver).executeScript("return document.documentElement.scrollTop");
         Assert.assertNotSame(before, after);
         Assert.assertTrue(visible("//*[@*='ux-layout-section-module']//parent::*[@*='vim x-returns-maxview']"));
@@ -821,13 +893,24 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceUnitsVisibility() throws Exception, Error {
+    public ViewItemPage verifyIsShopWithConfidenceUnitsBasicVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='SHOP_WITH_CONFIDENCE0-0-1-2-title']/*");
                 for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-title']/span")).size(); i++) {
                     add("(//*[@*='ux-section-icon-with-details__data-title']/span)[" + i + "]");
                 }
+            }
+        };
+        for (String element : elements) {
+            Assert.assertTrue(visible(element));
+        }
+        return this;
+    }
+
+    public ViewItemPage verifyIsShopWithConfidenceUnitsUSVisibility() throws Exception, Error {
+        Set<String> elements = new HashSet<String>() {
+            {
                 for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-item-text']/span")).size(); i++) {
                     add("(//*[@*='ux-section-icon-with-details__data-item-text']/span)[" + i + "]");
                 }
@@ -875,11 +958,11 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection() throws Exception, Error {
-        super.click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[3]");
+    public ViewItemPage verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection(String local) throws Exception, Error {
+        click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[" + (local.equals("US") ? "3" : "1") + "]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
-        Assert.assertTrue(waitTitle("Money"));
+        Assert.assertTrue(waitTitle(config.getProperty("money", "Money")));
         return this;
     }
 
@@ -938,13 +1021,13 @@ public class ViewItemPage extends BasePage {
     public ViewItemPage verifyIsSellerInfoIntegrationSellerNameRatingRedirection() throws Exception, Error {
         click("//*[@*='ux-seller-section__item--seller']/a[2]");
         waitAnimToPlay();
-        Assert.assertTrue(waitTitle("Feedback"));
+        Assert.assertTrue(waitTitle(config.getProperty("feedback", "Feedback")));
         return this;
     }
 
     public ViewItemPage verifyIsSellerInfoIntegrationVisitStoreRedirection() throws Exception, Error {
         click("(//*[@*='ux-seller-section__item']/a)[2]");
-        Assert.assertTrue(waitTitle("eBay Stores"));
+        Assert.assertTrue(waitTitle(config.getProperty("stores", "eBay Stores")));
         return this;
     }
 
