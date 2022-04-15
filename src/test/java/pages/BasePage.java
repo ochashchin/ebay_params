@@ -225,4 +225,8 @@ public class BasePage {
         } catch (Exception e) {
         }
     }
+
+    public void quit() {
+        driver.quit();
+    }
 }

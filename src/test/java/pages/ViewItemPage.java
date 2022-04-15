@@ -74,10 +74,12 @@ public class ViewItemPage extends BasePage {
         else
             config.load(getPropertyFile(getClassName(2), local));
         get(config.getProperty("url") + baseURL);
+
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         driver.manage().window().maximize();
-        driver.navigate().refresh();
         waitAnimToPlay();
+        driver.navigate().refresh();
+
         return this;
     }
 
@@ -1063,8 +1065,9 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-
-    public void quit() {
-        driver.quit();
+    public ViewItemPage verifyIsSellerInfoSystemIntegrationContactSellerRedirection() throws Exception {
+        click("(//*[@*='ux-seller-section__content']//ancestor::*[@*='ux-seller-section__item']/*)[3]");
+        Assert.assertTrue(waitTitle(config.getProperty("contactSellerTitle")));
+        return this;
     }
 }
