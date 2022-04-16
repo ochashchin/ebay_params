@@ -8,7 +8,7 @@ import pages.SignInPage;
 
 public class SingInTest extends BaseTest {
 
-    @Test(groups = {"SignIn", "US", "UK", "DE", "AU"})
+    @Test(groups = {"SignIn", "US", "UK", "DE"})
     @Parameters({"browser", "local"})
     public void test_sign_in_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
         new SignInPage(BaseDriver.getInstance().getDriver(browser))
@@ -17,12 +17,30 @@ public class SingInTest extends BaseTest {
                 .quit();
     }
 
-    @Test(groups = {"SignIn", "US", "UK", "DE", "AU"})
+    @Test(groups = {"SignIn", "AU"})
     @Parameters({"browser", "local"})
-    public void test_sign_in_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
+    public void test_sign_in_au_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
         new SignInPage(BaseDriver.getInstance().getDriver(browser))
                 .open(local)
+                .verifyIsUnitsVisibilityAu()
+                .quit();
+    }
+
+    @Test(groups = {"SignIn", "US", "UK", "DE"})
+    @Parameters({"browser", "local"})
+    public void test_sign_in_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
+        new SignInPage(BaseDriver.getInstance().getDriver("opera"))
+                .open(local)
                 .verifyIsUnitsClickable()
+                .quit();
+    }
+
+    @Test(groups = {"SignIn", "AU"})
+    @Parameters({"browser", "local"})
+    public void test_sign_in_au_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
+        new SignInPage(BaseDriver.getInstance().getDriver(browser))
+                .open(local)
+                .verifyIsUnitsClickableAu()
                 .quit();
     }
 
@@ -58,6 +76,7 @@ public class SingInTest extends BaseTest {
     public void test_sign_in_signInWithEmailOrUserName_system_BtoA_transition(@Optional() String browser, @Optional() String local) throws Exception {
         new SignInPage(BaseDriver.getInstance().getDriver(browser))
                 .open(local)
+                .verifyIsSystemSignInWithEmailOrUserNameAtoBTransition()
                 .verifyIsSystemSignInWithEmailOrUserNameBtoATransition()
                 .quit();
     }

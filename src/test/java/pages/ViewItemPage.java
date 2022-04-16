@@ -63,6 +63,25 @@ public class ViewItemPage extends BasePage {
     public static final String cartDialog = "//*[@*='vi_oly_atcRedesignId_overlay-atc-container']";
     public static final String calculatorDialog = "//*[@*='calculatorWrapper']";
 
+    Map<String, Object> data = new HashMap<>();
+    //generic interface needed
+    @Override
+    public ViewItemPage refresh() {
+        super.refresh();
+        return this;
+    }
+
+    @Override
+    public ViewItemPage click(String xPath) throws Exception {
+        super.click(xPath);
+        return this;
+    }
+
+    @Override
+    public ViewItemPage quit() {
+        super.quit();
+        return this;
+    }
 
     public ViewItemPage(WebDriver driver) {
         super(driver);
@@ -744,11 +763,6 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage click(String xPath) throws Exception, Error {
-        super.click(xPath);
-        return this;
-    }
-
     public ViewItemPage verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus() throws Exception, Error {
         waitAnimToPlay();
         List<String> elements = new ArrayList<String>() {
@@ -1068,6 +1082,62 @@ public class ViewItemPage extends BasePage {
     public ViewItemPage verifyIsSellerInfoSystemIntegrationContactSellerRedirection() throws Exception {
         click("(//*[@*='ux-seller-section__content']//ancestor::*[@*='ux-seller-section__item']/*)[3]");
         Assert.assertTrue(waitTitle(config.getProperty("contactSellerTitle")));
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhyToBuyWatchersQuantityPersistence() throws Exception {
+        int before = Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent"));
+        driver.navigate().refresh();
+        int after = Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent"));
+        Assert.assertTrue(after > before);
+        return this;
+    }
+
+    public ViewItemPage setWhyToBuyWatchlistButtonStateA() throws Exception {
+        data.put("setWhyToBuyWatchlistButtonStateA", Integer.parseInt(attribute("//*[@*='vi-atl-lnk']//ancestor::*[@*='vi-atw-txt']", "textContent")));
+        return this;
+    }
+
+    public ViewItemPage setWhyToBuyWatchlistButtonStateB() throws Exception {
+        data.put("setWhyToBuyWatchlistButtonStateB", Integer.parseInt(attribute("//*[@*='vi-atl-lnk']//ancestor::*[@*='vi-atw-txt']", "textContent")));
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhyToBuyWatchlistButtonStateAtoBTransfer() throws Exception {
+        int before = (int) data.get("setWhyToBuyWatchlistButtonStateA");
+        int after = (int) data.get("setWhyToBuyWatchlistButtonStateB");
+        Assert.assertTrue(after > before);
+        return this;
+    }
+
+    public ViewItemPage verifyIsWhyToBuyWatchlistButtonStateBtoATransfer() throws Exception {
+        int before = (int) data.get("setWhyToBuyWatchlistButtonStateB");
+        int after = (int) data.get("setWhyToBuyWatchlistButtonStateA");
+        Assert.assertTrue(after < before);
+        return this;
+    }
+
+    public ViewItemPage setIsWhyToBuyWatchersQuantityStateA() throws Exception {
+        data.put("setIsWhyToBuyWatchersQuantityStateA", Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent")));
+        return this;
+    }
+
+    public ViewItemPage setIsWhyToBuyWatchersQuantityStateB() throws Exception {
+        data.put("setIsWhyToBuyWatchersQuantityStateB", Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent")));
+        return this;
+    }
+
+    public ViewItemPage setIsWhyToBuyWatchersQuantityStateAtoBTransfer() {
+        String before = (String) data.get("setIsWhyToBuyWatchersQuantityStateA");
+        String after = (String) data.get("setIsWhyToBuyWatchersQuantityStateB");
+        Assert.assertNotSame(before, after);
+        return this;
+    }
+
+    public ViewItemPage setIsWhyToBuyWatchersQuantityStateBtoATransfer() {
+        int before = (int) data.get("setWhyToBuyWatchlistButtonStateB");
+        int after = (int) data.get("setWhyToBuyWatchlistButtonStateA");
+        Assert.assertNotSame(before, after);
         return this;
     }
 }

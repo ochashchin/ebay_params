@@ -40,7 +40,8 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public void quit() {
+    public T quit() {
         driver.quit();
+        return null;
     }
 }

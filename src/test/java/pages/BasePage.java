@@ -36,7 +36,7 @@ public class BasePage {
         }
     }
 
-    public Object click(String xPath) throws Exception {
+    public BasePage click(String xPath) throws Exception {
         try {
             WebElement result = waitElement(xPath);
             result.click();
@@ -99,12 +99,13 @@ public class BasePage {
             if (result != null){
                 Log.printLn("Element clickable " + result.toString());
                 return true;
+            } else {
+                return false;
             }
         } catch (Exception e) {
             Log.printLn("Element not clickable, because: " + e);
-            throw new Exception();
+            return false;
         }
-        return false;
     }
 
     public boolean visible(String xPath) throws Exception {
@@ -212,6 +213,7 @@ public class BasePage {
         } catch (Exception e) {
         }
     }
+
     public void waitLongAnimToPlay() {
         fWait.withTimeout(Duration.ofMillis(1200));
         fWait.pollingEvery(Duration.ofMillis(1200));
@@ -226,7 +228,13 @@ public class BasePage {
         }
     }
 
-    public void quit() {
+    public BasePage refresh() {
+        driver.navigate().refresh();
+        return this;
+    }
+
+    public BasePage quit() {
         driver.quit();
+        return this;
     }
 }

@@ -20,19 +20,16 @@ public class SignInPage extends BasePage {
             add("//*[@*='signin-intro']//ancestor::*[@*='signin-reg-msg']");
             add("//*[@*='floating-label']//ancestor::*[@*='userid']");
             add("//*[@*='floating-label']//ancestor::*[@*='textbox']");
-            add("//*[@*='signin-form']//ancestor::*[@*='sign-in-with-mobile-question']");
             add("//*[@*='signin-form']//ancestor::*[@*='signin-continue-btn']");
-            add("//*[@*='switch-to-mobile-link-container']//ancestor::*[@*='switch-to-mobile-link']");
             add("//*[@*='separator']//ancestor::*[@*='social-signin-wrapper-separator']/*");
             add("//*[@*='social-signin-buttons-reg']//ancestor::*[@*='signin_fb_btn']");
             add("//*[@*='social-signin-buttons-reg']//ancestor::*[@*='signin_ggl_btn']");
             add("//*[@*='social-signin-buttons-reg']//ancestor::*[@*='signin_appl_btn']");
-            add("//*[@*='checkbox-label']");
-            add("//*[@*='kmsi-checkbox']");
+            add("//*[@*='checkbox-label']/*[@*='checkbox custom']");
             add("//*[@*='kmsi-container']//ancestor::*[@*='ssip1']");
             add("//*[@*='kmsi-container']//ancestor::*[@*='ssip2']");
             add("//*[@*='kmsi-container']//ancestor::*[@*='button']");
-            for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gf-t-box']//ancestor::*[@*='gf-legal']/*']")).size(); i++) {
+            for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gf-t-box']//ancestor::*[@*='gf-legal']/*")).size(); i++) {
                 add("(//*[@*='gf-t-box']//ancestor::*[@*='gf-legal']/*)" + "[" + i + "]");
             }
             add("//*[@*='top']//ancestor::*[@*='center']/*");
@@ -43,16 +40,14 @@ public class SignInPage extends BasePage {
         {
             add("//*[@*='banner']//ancestor::*[@*='m570.l2586']/*");
             add("//*[@*='signin-intro']//ancestor::*[@*='signin-reg-msg']/*");
-            add("//*[@*='signin-form']//ancestor::*[@*='switch-to-mobile-link']");
-            add("//*[@*='signin-form']//ancestor::*[@*='signin-continue-btn']");
             add("//*[@*='signin-form']//ancestor::*[@*='signin-continue-btn']");
             add("//*[@*='social-signin-buttons-reg']//ancestor::*[@*='signin_fb_btn']");
             add("//*[@*='social-signin-buttons-reg']//ancestor::*[@*='signin_ggl_btn']");
             add("//*[@*='social-signin-buttons-reg']//ancestor::*[@*='signin_appl_btn']");
-            add("//*[@*='kmsi-checkbox']");
+            add("//*[@*='kmsi-checkbox-lbl']");
             add("//*[@*='kmsi-container']//ancestor::*[@*='button']");
             add("//*[@*='top']//ancestor::*[@*='center']/*");
-            for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gf-t-box']//ancestor::*[@*='gf-legal']/*']")).size(); i++) {
+            for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gf-t-box']//ancestor::*[@*='gf-legal']/*")).size(); i++) {
                 add("(//*[@*='gf-t-box']//ancestor::*[@*='gf-legal']/*)" + "[" + i + "]");
             }
         }
@@ -82,9 +77,26 @@ public class SignInPage extends BasePage {
         return this;
     }
 
+    public SignInPage verifyIsUnitsVisibilityAu() throws Exception {
+        visible.add("//*[@*='signin-form']//ancestor::*[@*='sign-in-with-mobile-question']");
+        visible.add("//*[@*='switch-to-mobile-link-container']//ancestor::*[@*='switch-to-mobile-link']");
+        for (String e : visible) {
+            Assert.assertTrue(visible(e));
+        }
+        return this;
+    }
+
     public SignInPage verifyIsUnitsClickable() throws Exception {
         for (String e : clickable) {
             Assert.assertTrue(visible(e));
+        }
+        return this;
+    }
+
+    public SignInPage verifyIsUnitsClickableAu() throws Exception {
+        clickable.add("//*[@*='signin-form']//ancestor::*[@*='switch-to-mobile-link']");
+        for (String e : clickable) {
+            Assert.assertTrue(clickable(e));
         }
         return this;
     }
@@ -102,7 +114,8 @@ public class SignInPage extends BasePage {
     }
 
     public SignInPage verifyIsSystemSignInWithEmailOrUserNameAtoBTransition() throws Exception {
-        pressKeys("//*[@*='floating-label']//ancestor::*[@*='userid']", "specifickarma@gmail.com");
+        waitAnimToPlay();
+        pressKeys("//*[@*='floating-label']//ancestor::*[@*='textbox']/*[@*='username']", "specifickarma@gmail.com");
         click("//*[@*='signin-form']//ancestor::*[@*='signin-continue-btn']");
         verifyIsUnitSignInWithEmailOrUserNameStateBVisibility();
         verifyIsUnitSignInWithEmailOrUserNameStateBClickable();
@@ -117,7 +130,8 @@ public class SignInPage extends BasePage {
 
     public SignInPage verifyIsSystemSignInWithEmailOrUserNamePositive() throws Exception {
         verifyIsSystemSignInWithEmailOrUserNameAtoBTransition();
-        pressKeys("//*[@*='password-box-wrapper']//ancestor::*[@*='textbox']/*[@*='pass']", "*****");
+        pressKeys("//*[@*='password-box-wrapper']//ancestor::*[@*='textbox']/*[@*='pass']", "$pass1055");
+        click("//*[@*='signin-form']//ancestor::*[@*='sgnBt']");
         Assert.assertTrue(waitTitle(config.getProperty("homeTitle")));
         return this;
     }

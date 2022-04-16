@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import pages.BasePage;
 import pages.SignInPage;
 import pages.ViewItemPage;
 
@@ -689,6 +690,47 @@ public class ViewItemTest extends BaseTest {
         new ViewItemPage(driver)
                 .open(local)
                 .verifyIsSellerInfoSystemIntegrationContactSellerRedirection()
+                .quit();
+    }
+
+    @Test(groups = {"ViewItem", "US", "UK", "DE", "AU"})
+    @Parameters({"browser", "local"})
+    public void test_view_item_sign_in_watchers_quantity_state_transfer(@Optional() String browser, @Optional() String local) throws Exception {
+        WebDriver driver = BaseDriver.getInstance().getDriver(browser);
+        new SignInPage(driver)
+                .open(local)
+                .verifyIsSystemSignInWithEmailOrUserNamePositive();
+        new ViewItemPage(driver)
+                .open(local)
+                .selectDropDown()
+                .setIsWhyToBuyWatchersQuantityStateA()
+                .click("//*[@*='vi-atl-lnk']")
+                .refresh()
+                .setIsWhyToBuyWatchersQuantityStateAtoBTransfer()
+                .setIsWhyToBuyWatchersQuantityStateB()
+                .click("//*[@*='vi-atl-lnk']")
+                .refresh()
+                .setIsWhyToBuyWatchersQuantityStateBtoATransfer()
+                .quit();
+    }
+
+    @Test(groups = {"ViewItem", "US", "UK", "DE", "AU"})
+    @Parameters({"browser", "local"})
+    public void test_view_item_sign_in_add_watchlist_button_state_transfer(@Optional() String browser, @Optional() String local) throws Exception {
+        WebDriver driver = BaseDriver.getInstance().getDriver(browser);
+        new SignInPage(driver)
+                .open(local)
+                .verifyIsSystemSignInWithEmailOrUserNamePositive();
+        new ViewItemPage(driver)
+                .open(local)
+                .selectDropDown()
+                .setWhyToBuyWatchlistButtonStateA()
+                .click("//*[@*='vi-atl-lnk']")
+                .setWhyToBuyWatchlistButtonStateB()
+                .verifyIsWhyToBuyWatchlistButtonStateAtoBTransfer()
+                .click("//*[@*='vi-atl-lnk']")
+                .setWhyToBuyWatchlistButtonStateA()
+                .verifyIsWhyToBuyWatchlistButtonStateBtoATransfer()
                 .quit();
     }
 
