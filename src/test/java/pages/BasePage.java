@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.function.Function;
 
-public class BasePage {
+public abstract class BasePage<T> {
 
     public WebDriver driver;
     public WebDriverWait wait;
@@ -26,6 +26,24 @@ public class BasePage {
         action = new Actions(driver);
     }
 
+    public abstract T click(String xPath) throws Exception;
+
+    public abstract T open(String URL) throws Exception;
+
+    public abstract T hover(String xPath) throws Exception;
+
+    public abstract T pressKeys(String xPath, CharSequence keys) throws Exception;
+
+    public abstract T doubleClick(String xPath) throws Exception;
+
+    public abstract T waitAnimToPlay() throws Exception;
+
+    public abstract T waitLongAnimToPlay() throws Exception;
+
+    public abstract T refresh() throws Exception;
+
+    public abstract T quit() throws Exception;
+
     public void get(String URL) throws Exception {
         try {
             driver.get(URL);
@@ -36,7 +54,7 @@ public class BasePage {
         }
     }
 
-    public BasePage click(String xPath) throws Exception {
+    public void onClick(String xPath) throws Exception {
         try {
             WebElement result = waitElement(xPath);
             result.click();
@@ -45,10 +63,9 @@ public class BasePage {
             Log.printLn("Cannot click on " + " because: " + e);
             throw new Exception();
         }
-        return this;
     }
 
-    public void hover(String xPath) throws Exception {
+    public void onHover(String xPath) throws Exception {
         try {
             WebElement result = waitElement(xPath);
             action.moveToElement(result).perform();
@@ -59,7 +76,7 @@ public class BasePage {
         }
     }
 
-    public void pressKeys(String xPath, CharSequence... keys) throws Exception {
+    public void onPressKeys(String xPath, CharSequence keys) throws Exception {
         try {
             WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
             result.sendKeys(keys);
@@ -70,33 +87,53 @@ public class BasePage {
         }
     }
 
-    public void type(String xPath, String text) throws Exception {
+    public void onDoubleClick(String xPath) throws Exception {
         try {
-            WebElement result = waitElement(xPath);
-            result.sendKeys(text);
-            Log.printLn("Typed " + text);
+            action.doubleClick(waitElement(xPath)).doubleClick(waitElement(xPath)).perform();
+            Log.printLn("Double click");
         } catch (Exception e) {
-            Log.printLn("Cannot type " + text + ", because: " + e);
+            Log.printLn("Cannot double click, because" + e);
             throw new Exception();
         }
     }
 
-    public String attribute(String xPath, String attribute) throws Exception {
-//        "textContent"
+    public void onWaitAnimToPlay(int time) throws Exception {
+        fWait.withTimeout(Duration.ofMillis(time));
+        fWait.pollingEvery(Duration.ofMillis(time));
+        fWait.ignoring(NoSuchElementException.class);
         try {
-            WebElement result = waitElement(xPath);
-            Log.printLn("Getting attribute " + result.getAttribute(attribute));
-            return result.getAttribute(attribute);
+            fWait.until(new Function() {
+                public WebElement apply(Object o) {
+                    return driver.findElement(By.xpath(""));
+                }
+            });
         } catch (Exception e) {
-            Log.printLn("Cannot get attribute, because: " + e);
-            throw new Exception();
         }
     }
 
-    public boolean clickable(String xPath) throws Exception{
+    public void onRefresh() throws Exception {
+        driver.navigate().refresh();
+    }
+
+    public void onQuit() throws Exception {
+        driver.quit();
+    }
+
+    public WebElement waitElement(String xPath) {
+        fWait.withTimeout(Duration.ofMillis(5000));
+        fWait.pollingEvery(Duration.ofMillis(200));
+        fWait.ignoring(NoSuchElementException.class);
+        return (WebElement) fWait.until(new Function() {
+            public WebElement apply(Object o) {
+                return driver.findElement(By.xpath(xPath));
+            }
+        });
+    }
+
+    public boolean clickable(String xPath) throws Exception {
         try {
             WebElement result = wait.until(ExpectedConditions.elementToBeClickable(waitElement(xPath)));
-            if (result != null){
+            if (result != null) {
                 Log.printLn("Element clickable " + result.toString());
                 return true;
             } else {
@@ -110,7 +147,7 @@ public class BasePage {
 
     public boolean visible(String xPath) throws Exception {
         try {
-            WebElement result = wait.until(ExpectedConditions.visibilityOf(waitElement(xPath))) ;
+            WebElement result = wait.until(ExpectedConditions.visibilityOf(waitElement(xPath)));
             if (result.isDisplayed()) {
                 Log.printLn("Element visible " + result.toString());
                 return true;
@@ -143,12 +180,13 @@ public class BasePage {
         }
     }
 
-    public void doubleClick(String xPath) throws Exception {
+    public String attribute(String xPath, String attribute) throws Exception {
         try {
-            action.doubleClick(waitElement(xPath)).doubleClick(waitElement(xPath)).perform();
-            Log.printLn("Double click");
+            WebElement result = waitElement(xPath);
+            Log.printLn("Getting attribute " + result.getAttribute(attribute));
+            return result.getAttribute(attribute);
         } catch (Exception e) {
-            Log.printLn("Cannot double click, because" + e);
+            Log.printLn("Cannot get attribute, because: " + e);
             throw new Exception();
         }
     }
@@ -189,52 +227,4 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0," + waitElement(xPath).getLocation().y / 2 + ")");
     }
 
-    public WebElement waitElement(String xPath) {
-        fWait.withTimeout(Duration.ofMillis(5000));
-        fWait.pollingEvery(Duration.ofMillis(200));
-        fWait.ignoring(NoSuchElementException.class);
-        return (WebElement) fWait.until(new Function() {
-            public WebElement apply(Object o) {
-                return driver.findElement(By.xpath(xPath));
-            }
-        });
-    }
-
-    public void waitAnimToPlay() {
-        fWait.withTimeout(Duration.ofMillis(600));
-        fWait.pollingEvery(Duration.ofMillis(600));
-        fWait.ignoring(NoSuchElementException.class);
-        try {
-            fWait.until(new Function() {
-               public WebElement apply(Object o) {
-                   return driver.findElement(By.xpath(""));
-               }
-           });
-        } catch (Exception e) {
-        }
-    }
-
-    public void waitLongAnimToPlay() {
-        fWait.withTimeout(Duration.ofMillis(1200));
-        fWait.pollingEvery(Duration.ofMillis(1200));
-        fWait.ignoring(NoSuchElementException.class);
-        try {
-            fWait.until(new Function() {
-                public WebElement apply(Object o) {
-                    return driver.findElement(By.xpath(""));
-                }
-            });
-        } catch (Exception e) {
-        }
-    }
-
-    public BasePage refresh() {
-        driver.navigate().refresh();
-        return this;
-    }
-
-    public BasePage quit() {
-        driver.quit();
-        return this;
-    }
 }

@@ -5,9 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pages.BasePage;
 import pages.SignInPage;
 import pages.ViewItemPage;
+
+import static pages.ViewItemPage.actPanelAddToCartBtn;
+import static pages.ViewItemPage.actPanelBuyItNowBtn;
 
 public class ViewItemTest extends BaseTest {
 

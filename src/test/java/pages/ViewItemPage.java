@@ -64,27 +64,57 @@ public class ViewItemPage extends BasePage {
     public static final String calculatorDialog = "//*[@*='calculatorWrapper']";
 
     Map<String, Object> data = new HashMap<>();
-    //generic interface needed
-    @Override
-    public ViewItemPage refresh() {
-        super.refresh();
-        return this;
+
+    public ViewItemPage(WebDriver driver) {
+        super(driver);
     }
 
     @Override
     public ViewItemPage click(String xPath) throws Exception {
-        super.click(xPath);
+        onClick(xPath);
         return this;
     }
 
     @Override
-    public ViewItemPage quit() {
-        super.quit();
+    public ViewItemPage hover(String xPath) throws Exception {
+        onHover(xPath);
         return this;
     }
 
-    public ViewItemPage(WebDriver driver) {
-        super(driver);
+    @Override
+    public ViewItemPage pressKeys(String xPath, CharSequence text) throws Exception {
+        onPressKeys(xPath, text);
+        return this;
+    }
+
+    @Override
+    public ViewItemPage doubleClick(String xPath) throws Exception {
+        onDoubleClick(xPath);
+        return this;
+    }
+
+    @Override
+    public ViewItemPage waitAnimToPlay() throws Exception {
+        onWaitAnimToPlay(600);
+        return this;
+    }
+
+    @Override
+    public ViewItemPage waitLongAnimToPlay() throws Exception {
+        onWaitAnimToPlay(1200);
+        return this;
+    }
+
+    @Override
+    public ViewItemPage refresh() throws Exception {
+        onRefresh();
+        return this;
+    }
+
+    @Override
+    public ViewItemPage quit() throws Exception {
+        onQuit();
+        return this;
     }
 
     public ViewItemPage open(String local) throws Exception, Error {
@@ -655,7 +685,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage selectDropDown() {
+    public ViewItemPage selectDropDown() throws Exception {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actionDetailsNetworkDropDown);

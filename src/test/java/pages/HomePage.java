@@ -18,6 +18,54 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
+    @Override
+    public HomePage click(String xPath) throws Exception {
+        onClick(xPath);
+        return this;
+    }
+
+    @Override
+    public HomePage hover(String xPath) throws Exception {
+        onHover(xPath);
+        return this;
+    }
+
+    @Override
+    public HomePage pressKeys(String xPath, CharSequence text) throws Exception {
+        onPressKeys(xPath, text);
+        return this;
+    }
+
+    @Override
+    public HomePage doubleClick(String xPath) throws Exception {
+        onDoubleClick(xPath);
+        return this;
+    }
+
+    @Override
+    public HomePage waitAnimToPlay() throws Exception {
+        onWaitAnimToPlay(600);
+        return this;
+    }
+
+    @Override
+    public HomePage waitLongAnimToPlay() throws Exception {
+        onWaitAnimToPlay(1200);
+        return this;
+    }
+
+    @Override
+    public HomePage refresh() throws Exception {
+        onRefresh();
+        return this;
+    }
+
+    @Override
+    public HomePage quit() throws Exception {
+        onQuit();
+        return this;
+    }
+
     public HomePage open(String local) throws Exception {
         if (local == null || local.equals(""))
             config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
@@ -40,8 +88,4 @@ public class HomePage extends BasePage {
         return this;
     }
 
-    public T quit() {
-        driver.quit();
-        return null;
-    }
 }
