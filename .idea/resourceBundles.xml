@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/test/resources/AccontBar_au.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/AccontBar_de.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/AccontBar_uk.properties" />
+    <file url="file://$PROJECT_DIR$/src/test/resources/AccontBar_us.properties" />
     <file url="file://$PROJECT_DIR$/src/test/resources/HomePage_de.properties" />
     <file url="file://$PROJECT_DIR$/src/test/resources/HomePage_uk.properties" />
     <file url="file://$PROJECT_DIR$/src/test/resources/SignInPage_au.properties" />
@@ -29,6 +33,13 @@
       <file value="file://$PROJECT_DIR$/src/test/resources/SignInPage_uk.properties" />
       <file value="file://$PROJECT_DIR$/src/test/resources/SignInPage_us.properties" />
       <base-name>SignInPage</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/test/resources/AccontBar_au.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resources/AccontBar_de.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resources/AccontBar_uk.properties" />
+      <file value="file://$PROJECT_DIR$/src/test/resources/AccontBar_us.properties" />
+      <base-name>AccontBar</base-name>
     </custom-resource-bundle>
   </component>
 </project>

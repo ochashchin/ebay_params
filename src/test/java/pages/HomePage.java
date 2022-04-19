@@ -9,6 +9,7 @@ import java.time.Duration;
 
 import static objects.ContentReader.getClassName;
 import static objects.ContentReader.getPropertyFile;
+import static objects.BaseDriver.*;
 
 public class HomePage extends BasePage {
 

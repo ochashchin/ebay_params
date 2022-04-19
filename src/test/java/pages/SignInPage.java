@@ -10,6 +10,7 @@ import java.util.List;
 
 import static objects.ContentReader.getClassName;
 import static objects.ContentReader.getPropertyFile;
+import static objects.BaseDriver.*;
 
 public class SignInPage extends BasePage {
 
@@ -111,7 +112,9 @@ public class SignInPage extends BasePage {
         else
             config.load(getPropertyFile(getClassName(2), local));
 
-        get(config.getProperty("url"));
+        if (!driver.getCurrentUrl().contains("http"))
+            get(config.getProperty("url"));
+
         driver.manage().window().maximize();
         driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
@@ -283,5 +286,10 @@ public class SignInPage extends BasePage {
     private void verifyIsUnitSignInWithMobileStateBPersistence() throws Exception {
         Assert.assertEquals(attribute("//*[@*='country-code-container']//ancestor::*[@*='expand-btn__cell menu-button__control--custom-label']/*/*[1]", "textContent"),
                 config.getProperty("areaCode"));
+    }
+
+    public SignInPage verifyIsSystemIntegrationSignInRedirection() throws Exception {
+        Assert.assertTrue(waitTitle(config.getProperty("signInOrRegisterTitle")));
+        return this;
     }
 }

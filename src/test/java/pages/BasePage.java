@@ -28,7 +28,7 @@ public abstract class BasePage<T> {
 
     public abstract T click(String xPath) throws Exception;
 
-    public abstract T open(String URL) throws Exception;
+    public abstract T open(String local) throws Exception;
 
     public abstract T hover(String xPath) throws Exception;
 

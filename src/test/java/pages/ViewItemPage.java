@@ -1,17 +1,18 @@
 package pages;
 
-import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.time.Duration;
-import java.util.*;
 import java.util.List;
+import java.util.*;
 
-import static objects.ContentReader.*;
+import static objects.ContentReader.getClassName;
+import static objects.ContentReader.getPropertyFile;
 
 public class ViewItemPage extends BasePage {
 
@@ -122,7 +123,9 @@ public class ViewItemPage extends BasePage {
             config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
         else
             config.load(getPropertyFile(getClassName(2), local));
-        get(config.getProperty("url") + baseURL);
+
+        if (!driver.getCurrentUrl().contains("http"))
+            get(config.getProperty("url") + baseURL);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         driver.manage().window().maximize();
@@ -1068,6 +1071,13 @@ public class ViewItemPage extends BasePage {
         click("//*[@*='ux-seller-section__item--seller']/a[2]");
         waitAnimToPlay();
         Assert.assertTrue(waitTitle(config.getProperty("feedback", "Feedback")));
+        return this;
+    }
+
+    public ViewItemPage verifyIsProductListingIntegrationSeeFeedbackPrompt() throws Exception, Error {
+        click("//*[@*='soldwithfeedback']//ancestor::*[@*='byrfdbk_atf_lnk']");
+        waitAnimToPlay();
+        Assert.assertTrue(visible("//*[@*='oly_container']//ancestor::*[@*='byrfdbk_modal']"));
         return this;
     }
 
