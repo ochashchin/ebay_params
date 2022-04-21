@@ -150,9 +150,9 @@ public class AccountBar extends BasePage {
     }
 
     public AccountBar verifyHelpAndContactIntegrationRedirection() throws Exception {
-        click("//*[@*='gh-top']//ancestor::a[contains(text(), 'Help')]");
+        click("//*[@*='gh-top']//ancestor::a[contains(text(), '" + config.getProperty("help") + "')]");
         waitAnimToPlay();
-        Assert.assertTrue(waitTitle(config.getProperty("help")));
+        Assert.assertTrue(waitTitle(config.getProperty("helpTitle")));
         return this;
     }
 
@@ -222,16 +222,26 @@ public class AccountBar extends BasePage {
 
     public AccountBar verifyCartIntegrationDropDownTransitionANoSignedIn() throws Exception {
         for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*")).size(); i++) {
-            Assert.assertTrue(visible("//*[@*='gh-top']//ancestor::*[@*='ghn-errb ghn-errb-a']/a" + "[" + i + "]"));
-            Assert.assertTrue(clickable("//*[@*='gh-top']//ancestor::*[@*='ghn-errb ghn-errb-a']/a" + "[" + i + "]"));
+            Assert.assertTrue(visible("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
+            Assert.assertTrue(clickable("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
         }
         return this;
     }
 
     public AccountBar verifyCartIntegrationDropDownTransitionBNoSignedIn() throws Exception {
         for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*")).size(); i++) {
-            Assert.assertFalse(visible("//*[@*='gh-top']//ancestor::*[@*='ghn-errb ghn-errb-a']/a" + "[" + i + "]"));
-            Assert.assertFalse(clickable("//*[@*='gh-top']//ancestor::*[@*='ghn-errb ghn-errb-a']/a" + "[" + i + "]"));
+            Assert.assertFalse(visible("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
+            Assert.assertFalse(clickable("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
+        }
+        return this;
+    }
+
+    public AccountBar verifyCartIntegrationDropDownTransitionCNoSignedIn() throws Exception {
+        for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='minicart']/*")).size(); i++) {
+            Assert.assertTrue(visible("//*[@*='minicart']/*" + "[" + i + "]"));
+        }
+        for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='minicart']//ancestor::a")).size(); i++) {
+            Assert.assertTrue(clickable("(//*[@*='minicart']//ancestor::a)" + "[" + i + "]"));
         }
         return this;
     }
@@ -239,7 +249,21 @@ public class AccountBar extends BasePage {
     public AccountBar verifyCartRedirectionNoSignedIn() throws Exception {
         click("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[5]");
         waitAnimToPlay();
-        Assert.assertTrue(waitTitle(config.getProperty("signTitle")));
+        Assert.assertTrue(waitTitle(config.getProperty("cartTitle")));
         return this;
     }
+
+    public AccountBar verifyCartLabelMinNumberNoSignedIn() throws Exception {
+        waitAnimToPlay();
+        Assert.assertTrue(attribute("//*[@*='gh-top']//ancestor::*[@*='gh-cart-n']", "textContent").equals("1"));
+        return this;
+    }
+
+    public AccountBar verifyCartLabelMaxNumberNoSignedIn() throws Exception {
+        waitAnimToPlay();
+        int n = Integer.parseInt(Character.toString(waitElement("//*[@*='qtySubTxt']").getText().charAt(0)));
+        Assert.assertTrue(attribute("//*[@*='gh-top']//ancestor::*[@*='gh-cart-n']", "textContent").equals(n+""));
+        return this;
+    }
+
 }

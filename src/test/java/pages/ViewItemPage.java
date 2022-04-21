@@ -1180,4 +1180,11 @@ public class ViewItemPage extends BasePage {
         Assert.assertNotSame(before, after);
         return this;
     }
+
+    public ViewItemPage verifyIsActionDetailsCartIconNumberTransition() throws Exception {
+        verifyIsActionDetailsSystemQuantityBoundaryMin();
+        click("//*[@*='clzBtn viicon-close']");
+        return this;
+    }
+
 }

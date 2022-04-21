@@ -1,12 +1,9 @@
 package tests;
 
 import io.restassured.RestAssured;
-import io.restassured.http.Header;
 import io.restassured.response.Response;
-import objects.BaseDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.ViewItemPage;
 
 import java.util.HashMap;
 import java.util.Map;

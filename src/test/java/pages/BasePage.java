@@ -17,7 +17,7 @@ public abstract class BasePage<T> {
     public WebDriverWait wait;
     public FluentWait fWait;
     public Actions action;
-    Properties config = new Properties();
+    public Properties config = new Properties();
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
