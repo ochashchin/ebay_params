@@ -163,7 +163,7 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyWatchlistIntegrationDropDownTransitionA() throws Exception {
+    public AccountBar verifyWatchlistDropDownIntegrationTransitionA() throws Exception {
         for (String s : watchlist) {
             Assert.assertTrue(visible(s));
         }
@@ -171,7 +171,7 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyWatchlistIntegrationDropDownTransitionB() throws Exception {
+    public AccountBar verifyWatchlistDropDownIntegrationTransitionB() throws Exception {
         for (String s : watchlist) {
             Assert.assertFalse(visible(s));
         }
@@ -196,7 +196,14 @@ public class AccountBar extends BasePage {
     }
 
     public AccountBar verifyMyEbayIntegrationRedirectionNoSignedIn() throws Exception {
+        verifyMyEbayIntegrationDropDownTransitionA();
         click("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifySignInRedirection();
+        return this;
+    }
+
+    public AccountBar verifySignInRedirection() throws Exception {
         waitAnimToPlay();
         Assert.assertTrue(waitTitle(config.getProperty("signTitle")));
         return this;
@@ -220,7 +227,7 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyCartIntegrationDropDownTransitionANoSignedIn() throws Exception {
+    public AccountBar verifyCartDropDownIntegrationTransitionANoSignedIn() throws Exception {
         for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*")).size(); i++) {
             Assert.assertTrue(visible("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
             Assert.assertTrue(clickable("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
@@ -228,7 +235,7 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyCartIntegrationDropDownTransitionBNoSignedIn() throws Exception {
+    public AccountBar verifyCartDropDownIntegrationTransitionB() throws Exception {
         for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*")).size(); i++) {
             Assert.assertFalse(visible("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
             Assert.assertFalse(clickable("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
@@ -236,7 +243,7 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyCartIntegrationDropDownTransitionCNoSignedIn() throws Exception {
+    public AccountBar verifyCartDropDownIntegrationItemsVisibility() throws Exception {
         for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='minicart']/*")).size(); i++) {
             Assert.assertTrue(visible("//*[@*='minicart']/*" + "[" + i + "]"));
         }
@@ -253,17 +260,161 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyCartLabelMinNumberNoSignedIn() throws Exception {
+    public AccountBar verifyCartLabelMinNumberVisibility() throws Exception {
         waitAnimToPlay();
         Assert.assertTrue(attribute("//*[@*='gh-top']//ancestor::*[@*='gh-cart-n']", "textContent").equals("1"));
         return this;
     }
 
-    public AccountBar verifyCartLabelMaxNumberNoSignedIn() throws Exception {
+    public AccountBar verifyCartLabelMaxNumberVisibility() throws Exception {
         waitAnimToPlay();
         int n = Integer.parseInt(Character.toString(waitElement("//*[@*='qtySubTxt']").getText().charAt(0)));
         Assert.assertTrue(attribute("//*[@*='gh-top']//ancestor::*[@*='gh-cart-n']", "textContent").equals(n+""));
         return this;
     }
 
+    public AccountBar verifyWatchlistDropDownItemInVisibility(boolean visibility) throws Exception {
+        List<String> watchlist = new ArrayList<String>() {
+            {
+                add("//*[@*='gh-top']//ancestor::*[@*='rvi__title']/a");
+                add("//*[@*='gh-top']//ancestor::*[@*='carousel__list']//ancestor::*[@*='gh-img__wrapper']");
+                add("//*[@*='gh-top']//ancestor::*[@*='carousel__list']//ancestor::*[@*='gh-info__title']");
+                add("//*[@*='gh-top']//ancestor::*[@*='carousel__list']//ancestor::*[@*='gh-info__row--displayPrice']");
+            }
+        };
+        for (String s : watchlist) {
+            if (visibility) {
+                Assert.assertTrue(visible(s));
+            } else {
+                Assert.assertFalse(visible(s));
+            }
+        }
+        return this;
+    }
+
+    public AccountBar verifySummaryRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("summaryTitle") + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("summaryTitle")));
+        return this;
+    }
+
+    public AccountBar verifyRecentlyViewedRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("recentlyViewedTitle") + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("recentlyViewedTitle")));
+        return this;
+    }
+
+    public AccountBar verifyBidOfferRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("bidOfferTitle") + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("bidOfferTitle")));
+        return this;
+    }
+
+    public AccountBar verifyWatchListRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("watchListTitle") + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("watchListTitle")));
+        return this;
+    }
+
+    public AccountBar verifyPurchaseHistoryRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("purchaseHistoryTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("purchaseHistoryTitle")));
+        return this;
+    }
+
+    public AccountBar verifySellingRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("sellingTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("sellingTitle")));
+        return this;
+    }
+
+    public AccountBar verifySavedSearchesRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("savedSearchesTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("savedSearchesTitle")));
+        return this;
+    }
+
+    public AccountBar verifySavedSellersRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("savedSellersTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("savedSellersTitle")));
+        return this;
+    }
+
+    public AccountBar verifyMyGarageRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("myGarageTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("myGarageTitle")));
+        return this;
+    }
+
+    public AccountBar verifyMessagesRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("messagesTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("messagesTitle")));
+        return this;
+    }
+
+    public AccountBar verifyCollectionRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("collectionTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("collectionTitle")));
+        return this;
+    }
+
+    public AccountBar verifyBuyAgainRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[contains(text(), '" + config.getProperty("buyAgainTitle").split(" ")[0] + "')]");
+        Assert.assertTrue(waitTitle(config.getProperty("buyAgainTitle")));
+        return this;
+    }
+
+    public AccountBar verifyCollectSpendRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-ul-nav']//ancestor::a[@*='gh-eb-nectar']");
+        Assert.assertTrue(waitTitle("Nectar"));
+        return this;
+    }
+
+    public AccountBar verifyPunkteRedirection() throws Exception {
+        hover("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[3]");
+        waitAnimToPlay();
+        verifyMyEbayIntegrationDropDownTransitionA();
+        click("//*[@*='gh-top']//ancestor::a[contains(text(), 'Punkte')]");
+        Assert.assertTrue(waitTitle("Punkte"));
+        return this;
+    }
 }
