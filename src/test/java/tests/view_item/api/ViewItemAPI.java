@@ -1,9 +1,10 @@
-package tests;
+package tests.view_item.api;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import tests.BaseTest;
 
 import java.util.HashMap;
 import java.util.Map;

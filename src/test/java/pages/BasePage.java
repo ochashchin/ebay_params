@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.Properties;
 import java.util.function.Function;
 
-public abstract class BasePage<T> {
+public abstract class BasePage {
 
     public WebDriver driver;
     public WebDriverWait wait;
@@ -26,24 +26,6 @@ public abstract class BasePage<T> {
         action = new Actions(driver);
     }
 
-    public abstract T click(String xPath) throws Exception;
-
-    public abstract T open(String local) throws Exception;
-
-    public abstract T hover(String xPath) throws Exception;
-
-    public abstract T pressKeys(String xPath, CharSequence keys) throws Exception;
-
-    public abstract T doubleClick(String xPath) throws Exception;
-
-    public abstract T waitAnimToPlay() throws Exception;
-
-    public abstract T waitLongAnimToPlay() throws Exception;
-
-    public abstract T refresh() throws Exception;
-
-    public abstract T quit() throws Exception;
-
     public void get(String URL) throws Exception {
         try {
             driver.get(URL);
@@ -54,7 +36,7 @@ public abstract class BasePage<T> {
         }
     }
 
-    public void onClick(String xPath) throws Exception {
+    public void click(String xPath) throws Exception {
         try {
             WebElement result = waitElement(xPath);
             result.click();
@@ -65,7 +47,7 @@ public abstract class BasePage<T> {
         }
     }
 
-    public void onHover(String xPath) throws Exception {
+    public void hover(String xPath) throws Exception {
         try {
             WebElement result = waitElement(xPath);
             action.moveToElement(result).perform();
@@ -76,7 +58,7 @@ public abstract class BasePage<T> {
         }
     }
 
-    public void onPressKeys(String xPath, CharSequence keys) throws Exception {
+    public void pressKeys(String xPath, CharSequence keys) throws Exception {
         try {
             WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xPath)));
             result.sendKeys(keys);
@@ -87,7 +69,7 @@ public abstract class BasePage<T> {
         }
     }
 
-    public void onDoubleClick(String xPath) throws Exception {
+    public void doubleClick(String xPath) throws Exception {
         try {
             action.doubleClick(waitElement(xPath)).doubleClick(waitElement(xPath)).perform();
             Log.printLn("Double click");
@@ -97,7 +79,8 @@ public abstract class BasePage<T> {
         }
     }
 
-    public void onWaitAnimToPlay(int time) throws Exception {
+    public void waitAnimToPlay() throws Exception {
+        int time = 600;
         fWait.withTimeout(Duration.ofMillis(time));
         fWait.pollingEvery(Duration.ofMillis(time));
         fWait.ignoring(NoSuchElementException.class);
@@ -111,11 +94,11 @@ public abstract class BasePage<T> {
         }
     }
 
-    public void onRefresh() throws Exception {
+    public void refresh() throws Exception {
         driver.navigate().refresh();
     }
 
-    public void onQuit() throws Exception {
+    public void quit() throws Exception {
         driver.quit();
     }
 

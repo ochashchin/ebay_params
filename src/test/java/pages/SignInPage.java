@@ -58,54 +58,6 @@ public class SignInPage extends BasePage {
         super(driver);
     }
 
-    @Override
-    public SignInPage click(String xPath) throws Exception {
-        onClick(xPath);
-        return this;
-    }
-
-    @Override
-    public SignInPage hover(String xPath) throws Exception {
-        onHover(xPath);
-        return this;
-    }
-
-    @Override
-    public SignInPage pressKeys(String xPath, CharSequence text) throws Exception {
-        onPressKeys(xPath, text);
-        return this;
-    }
-
-    @Override
-    public SignInPage doubleClick(String xPath) throws Exception {
-        onDoubleClick(xPath);
-        return this;
-    }
-
-    @Override
-    public SignInPage waitAnimToPlay() throws Exception {
-        onWaitAnimToPlay(600);
-        return this;
-    }
-
-    @Override
-    public SignInPage waitLongAnimToPlay() throws Exception {
-        onWaitAnimToPlay(1200);
-        return this;
-    }
-
-    @Override
-    public SignInPage refresh() throws Exception {
-        onRefresh();
-        return this;
-    }
-
-    @Override
-    public SignInPage quit() throws Exception {
-        onQuit();
-        return this;
-    }
-
     public SignInPage open(String local) throws Exception {
         if (local == null || local.equals(""))
             config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));

@@ -6,7 +6,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pages.SignInPage;
-import pages.ViewItemPage;
+import pages.ProductPanel;
 
 import static objects.Config.*;
 
@@ -131,7 +131,7 @@ public class SingInTest extends BaseTest {
     @Parameters({BROWSER, LOCAL})
     public void test_sign_in_sell_now_system_integration_redirection(@Optional() String browser, @Optional() String local) throws Exception {
         WebDriver driver = BaseDriver.getInstance().getDriver(browser);
-        new ViewItemPage(driver)
+        new ProductPanel(driver)
                 .open(local)
                 .click("(//*[contains(@*,'vi-slt-c vi-slt-instSale')]//child::span[2])[1]");
         new SignInPage(driver)

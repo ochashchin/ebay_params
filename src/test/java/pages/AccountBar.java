@@ -17,13 +17,6 @@ public class AccountBar extends BasePage {
         super(driver);
     }
 
-    @Override
-    public AccountBar click(String xPath) throws Exception {
-        onClick(xPath);
-        return this;
-    }
-
-    @Override
     public AccountBar open(String local) throws Exception {
         if (local == null || local.equals(""))
             config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
@@ -36,48 +29,6 @@ public class AccountBar extends BasePage {
         driver.manage().window().maximize();
         driver.navigate().refresh();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
-        return this;
-    }
-
-    @Override
-    public AccountBar hover(String xPath) throws Exception {
-        onHover(xPath);
-        return this;
-    }
-
-    @Override
-    public AccountBar pressKeys(String xPath, CharSequence keys) throws Exception {
-        onPressKeys(xPath, keys);
-        return this;
-    }
-
-    @Override
-    public AccountBar doubleClick(String xPath) throws Exception {
-        onDoubleClick(xPath);
-        return this;
-    }
-
-    @Override
-    public AccountBar waitAnimToPlay() throws Exception {
-        onWaitAnimToPlay(600);
-        return this;
-    }
-
-    @Override
-    public AccountBar waitLongAnimToPlay() throws Exception {
-        onWaitAnimToPlay(1200);
-        return this;
-    }
-
-    @Override
-    public AccountBar refresh() throws Exception {
-        onRefresh();
-        return this;
-    }
-
-    @Override
-    public AccountBar quit() throws Exception {
-        onQuit();
         return this;
     }
 

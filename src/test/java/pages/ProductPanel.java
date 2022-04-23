@@ -14,7 +14,7 @@ import java.util.*;
 import static objects.ContentReader.getClassName;
 import static objects.ContentReader.getPropertyFile;
 
-public class ViewItemPage extends BasePage {
+public class ProductPanel extends BasePage {
 
     public static final String baseURL = "itm/175037940958";
     public static final String viewPortList = "(//ul[@id='vertical-align-items-viewport']//ancestor::a[@class='pic pic1'])";
@@ -66,59 +66,11 @@ public class ViewItemPage extends BasePage {
 
     Map<String, Object> data = new HashMap<>();
 
-    public ViewItemPage(WebDriver driver) {
+    public ProductPanel(WebDriver driver) {
         super(driver);
     }
 
-    @Override
-    public ViewItemPage click(String xPath) throws Exception {
-        onClick(xPath);
-        return this;
-    }
-
-    @Override
-    public ViewItemPage hover(String xPath) throws Exception {
-        onHover(xPath);
-        return this;
-    }
-
-    @Override
-    public ViewItemPage pressKeys(String xPath, CharSequence text) throws Exception {
-        onPressKeys(xPath, text);
-        return this;
-    }
-
-    @Override
-    public ViewItemPage doubleClick(String xPath) throws Exception {
-        onDoubleClick(xPath);
-        return this;
-    }
-
-    @Override
-    public ViewItemPage waitAnimToPlay() throws Exception {
-        onWaitAnimToPlay(600);
-        return this;
-    }
-
-    @Override
-    public ViewItemPage waitLongAnimToPlay() throws Exception {
-        onWaitAnimToPlay(1200);
-        return this;
-    }
-
-    @Override
-    public ViewItemPage refresh() throws Exception {
-        onRefresh();
-        return this;
-    }
-
-    @Override
-    public ViewItemPage quit() throws Exception {
-        onQuit();
-        return this;
-    }
-
-    public ViewItemPage open(String local) throws Exception, Error {
+    public ProductPanel open(String local) throws Exception, Error {
         if (local == null || local.equals(""))
             config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
         else
@@ -128,19 +80,18 @@ public class ViewItemPage extends BasePage {
             get(config.getProperty("url") + baseURL);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
-        driver.manage().window().maximize();
         waitAnimToPlay();
         driver.navigate().refresh();
 
         return this;
     }
 
-    public ViewItemPage scroll() throws Exception, Error {
+    public ProductPanel scroll() throws Exception, Error {
         scrollToElement(viewPortDown);
         return this;
     }
 
-    public ViewItemPage verifyIsViewPortFocusable() throws Exception, Error {
+    public ProductPanel verifyIsViewPortFocusable() throws Exception, Error {
         for (int i = 1; i <= driver.findElements(By.xpath(viewPortList)).size(); i++) {
             if (i % 6 == 0) click(viewPortDown);
             click(viewPortList + "[" + i + "]");
@@ -149,7 +100,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsViewPortVisible() throws Exception, Error {
+    public ProductPanel verifyIsViewPortVisible() throws Exception, Error {
         for (int i = 1; i <= driver.findElements(By.xpath(viewPortList)).size(); i++) {
             if (i % 6 == 0) click(viewPortDown);
             Assert.assertTrue(visible(viewPortList + "[" + i + "]"));
@@ -157,15 +108,14 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsViewPortClickable() throws Exception, Error {
+    public void verifyIsViewPortClickable() throws Exception, Error {
         for (int i = 1; i <= driver.findElements(By.xpath(viewPortList)).size(); i++) {
             if (i % 6 == 0) click(viewPortDown);
             Assert.assertTrue(clickable(viewPortList + "[" + i + "]"));
         }
-        return this;
     }
 
-    public ViewItemPage verifyIsViewPortHover() throws Exception, Error {
+    public ProductPanel verifyIsViewPortHover() throws Exception, Error {
         List<String> src = new ArrayList<>();
         for (int i = 1; i <= driver.findElements(By.xpath(viewPortList)).size(); i++) {
             if (i % 6 == 0) {
@@ -181,7 +131,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsViewPortScrollStateDown() throws Exception, Error {
+    public ProductPanel verifyIsViewPortScrollStateDown() throws Exception, Error {
         Point a = waitElement(viewPortProgress).getLocation();
         click(viewPortDown);
         waitAnimToPlay();
@@ -190,7 +140,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsViewPortScrollStateUp() throws Exception, Error {
+    public ProductPanel verifyIsViewPortScrollStateUp() throws Exception, Error {
         click(viewPortDown);
         waitAnimToPlay();
         Point a = waitElement(viewPortProgress).getLocation();
@@ -201,7 +151,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsViewPortSetColor(String color) throws Exception, Error {
+    public ProductPanel verifyIsViewPortSetColor(String color) throws Exception, Error {
         int index;
         switch (color) {
             case "Space Gray":
@@ -231,7 +181,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewResourceVisible() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewResourceVisible() throws Exception, Error {
         String s = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(s.substring(s.lastIndexOf(" ") + 1));
         for (int i = 1; i <= size; i++) {
@@ -246,7 +196,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewResourceClickable() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewResourceClickable() throws Exception, Error {
         String s = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(s.substring(s.lastIndexOf(" ") + 1));
         for (int i = 1; i <= size; i++) {
@@ -259,7 +209,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewResourceFocusable() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewResourceFocusable() throws Exception, Error {
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
         for (int i = 1; i <= size; i++) {
@@ -273,7 +223,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewResourceExpandable() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewResourceExpandable() throws Exception, Error {
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
         for (int i = 1; i <= size; i++) {
@@ -292,7 +242,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewIntegrationLeft() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewIntegrationLeft() throws Exception, Error {
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
         List<String> src = new ArrayList<>();
@@ -314,7 +264,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewIntegrationRight() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewIntegrationRight() throws Exception, Error {
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
         List<String> src = new ArrayList<>();
@@ -330,7 +280,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewIntegrationColor() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewIntegrationColorDropdown() throws Exception, Error {
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
         HashMap<Integer, String> map = new HashMap<Integer, String>() {
@@ -354,7 +304,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsEnlargeViewIntegrationFocusToViewport() throws Exception, Error {
+    public ProductPanel verifyIsEnlargeViewIntegrationFocusToViewport() throws Exception, Error {
         String list = "(" + viewPortProgress + "/li)";
         String t = attribute(enlargeViewQuantity, "textContent");
         int size = Integer.parseInt(t.substring(t.lastIndexOf(" ") + 1));
@@ -375,31 +325,31 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsIconTitleVisible() throws Exception, Error {
+    public ProductPanel verifyIsIconTitleVisible() throws Exception, Error {
         Assert.assertTrue(visible(itemTitleIcon));
         Assert.assertTrue(visibleLayout(itemTitleIcon));
         return this;
     }
 
-    public ViewItemPage verifyIsIconTitleTextVisible() throws Exception, Error {
+    public ProductPanel verifyIsIconTitleTextVisible() throws Exception, Error {
         Assert.assertTrue(visible(itemTitleIconTitle));
         Assert.assertTrue(visibleLayout(itemTitleIconTitle));
         return this;
     }
 
-    public ViewItemPage verifyIsItemTitleVisible() throws Exception, Error {
+    public ProductPanel verifyIsItemTitleVisible() throws Exception, Error {
         Assert.assertTrue(visible(itemTitle));
         Assert.assertTrue(visibleLayout(itemTitle));
         return this;
     }
 
-    public ViewItemPage verifyIsSubTitleVisible() throws Exception, Error {
+    public ProductPanel verifyIsSubTitleVisible() throws Exception, Error {
         Assert.assertTrue(visible(itemTitleSub));
         Assert.assertTrue(visibleLayout(itemTitleSub));
         return this;
     }
 
-    public ViewItemPage verifyIsTitleHighlightCopy() throws Exception, Error {
+    public ProductPanel verifyIsTitleHighlightCopy() throws Exception, Error {
         doubleClick(itemTitle);
         pressCopy();
         String buffer = Toolkit.getDefaultToolkit().getSystemClipboard().getData(DataFlavor.stringFlavor).toString();
@@ -407,7 +357,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsUSVisibility() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsUSVisibility() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionDescTextIcon);
@@ -425,7 +375,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsVisibility() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsVisibility() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionText);
@@ -451,7 +401,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsUSClickable() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsUSClickable() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionDescTextIconButton);
@@ -466,7 +416,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsClickable() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsClickable() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsReadMore);
@@ -483,7 +433,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsUSFocusable() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsUSFocusable() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsConditionDescTextIconButton);
@@ -496,7 +446,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsFocusable() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsFocusable() throws Exception, Error {
         List<String> order = new ArrayList<String>() {
             {
                 add(actionDetailsNetworkDropDown);
@@ -511,7 +461,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSelectable() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSelectable() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actionDetailsNetworkDropDown);
@@ -525,21 +475,21 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationConditionIcon() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationConditionIcon() throws Exception, Error {
         click(actionDetailsConditionDescTextIconButton);
         waitAnimToPlay();
         Assert.assertTrue(visible(dialogCondition));
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationReadMore() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationReadMore() throws Exception, Error {
         click(actionDetailsReadMore);
         waitAnimToPlay();
         Assert.assertTrue(visible("(//*[@*='ux-layout-section ux-layout-section--condition ux-layout-section--SECTION_WITH_BACKGROUND']//ancestor::*[@*='ux-labels-values__values-content'])[2]"));
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationColor() throws Exception, Error {
+    public ProductPanel verifyIsColorDropdownIntegrationEnlageView() throws Exception, Error {
         Set<String> set = new HashSet<>();
         HashMap<Integer, String> map = new HashMap<Integer, String>() {
             {
@@ -560,7 +510,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationBulkPrice() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationBulkPrice() throws Exception, Error {
         Set<String> set = new HashSet<>();
         List<String> list = new ArrayList<String>() {{
             for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
@@ -577,7 +527,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationBulkPriceDesc() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationBulkPriceDesc() throws Exception, Error {
         Set<String> set = new HashSet<>();
         List<String> list = new ArrayList<String>() {{
             for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
@@ -594,7 +544,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationBulkPriceSaving() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationBulkPriceSaving() throws Exception, Error {
         Set<String> set = new HashSet<>();
         List<String> list = new ArrayList<String>() {{
             for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
@@ -615,7 +565,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsIntegrationBulkQuantity() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationBulkQuantity() throws Exception, Error {
         Set<String> set = new HashSet<>();
         List<String> list = new ArrayList<String>() {{
             for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='vi-vpqp-wrapper']/*")).size(); i++) {
@@ -632,13 +582,13 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityFocusable() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityFocusable() throws Exception, Error {
         pressKeys(actionDetailsQuantityEditText, Keys.SHIFT);
         Assert.assertTrue(focusable(actionDetailsQuantityEditText));
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryMax() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityBoundaryMax() throws Exception, Error {
         int n = Integer.parseInt(Character.toString(waitElement("//*[@*='qtySubTxt']").getText().charAt(0)));
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, String.valueOf(n));
@@ -647,7 +597,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityBoundaryMaxInvalid() throws Exception, Error {
         int n = Integer.parseInt(Character.toString(waitElement("//*[@*='qtySubTxt']").getText().charAt(0)));
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, (n + 1) + "");
@@ -657,7 +607,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryMin() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityBoundaryMin() throws Exception, Error {
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, "1");
         Assert.assertFalse(visible("//*[@*='errorimg']"));
@@ -665,7 +615,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryMinInvalid() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityBoundaryMinInvalid() throws Exception, Error {
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, "0");
         Assert.assertTrue(visible("//*[@*='errorimg']"));
@@ -674,21 +624,21 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityUSBoundaryDefaultInvalid() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityUSBoundaryDefaultInvalid() throws Exception, Error {
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, "x");
         Assert.assertTrue(attribute(actionDetailsQuantityEditText, "value").contains("3"));
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSystemQuantityBoundaryDefaultInvalid() throws Exception, Error {
         waitElement(actionDetailsQuantityEditText).clear();
         pressKeys(actionDetailsQuantityEditText, "x");
         Assert.assertTrue(attribute("//*[@*='qtyErrMsg']/div", "textContent").contains("1"));
         return this;
     }
 
-    public ViewItemPage selectDropDown() throws Exception {
+    public ProductPanel selectDropDown() throws Exception {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actionDetailsNetworkDropDown);
@@ -706,7 +656,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitSpecificVisible() throws Exception, Error {
+    public ProductPanel verifyIsActPanelUnitSpecificVisible() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add("//*[@*='mainPrice']/*[1]/*[5]");
@@ -719,7 +669,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitBasicVisible() throws Exception, Error {
+    public ProductPanel verifyIsActPanelUnitBasicVisible() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelPriceText);
@@ -735,7 +685,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitUSVisible() throws Exception, Error {
+    public ProductPanel verifyIsActPanelUnitUSVisible() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelCreditText);
@@ -747,7 +697,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitBasicClickable() throws Exception, Error {
+    public ProductPanel verifyIsActPanelUnitBasicClickable() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelBuyItNowBtn);
@@ -761,7 +711,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelUnitUSClickable() throws Exception, Error {
+    public ProductPanel verifyIsActPanelUnitUSClickable() throws Exception, Error {
         List<String> elements = new ArrayList<String>() {
             {
                 add(actPanelCreditText);
@@ -773,14 +723,14 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelIntegrationPriceCredit() throws Exception, Error {
+    public ProductPanel verifyIsActPanelIntegrationPriceCredit() throws Exception, Error {
         click(actPanelCreditText);
         waitAnimToPlay();
         Assert.assertTrue(visible(calculatorDialog));
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility() throws Exception, Error {
+    public ProductPanel verifyIsActPanelActionDetailsNegativeIntegrationErrorIconAndMessageVisibility() throws Exception, Error {
         waitAnimToPlay();
         List<String> elements = new ArrayList<String>() {
             {
@@ -796,7 +746,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus() throws Exception, Error {
+    public ProductPanel verifyIsActPanelActionDetailsNegativeIntegrationDropDownFocus() throws Exception, Error {
         waitAnimToPlay();
         List<String> elements = new ArrayList<String>() {
             {
@@ -816,17 +766,17 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelActionDetailsPositiveIntegrationBuyItNowDialogVisibility() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsSytemIntegrationActPanelBuyItNowDialogVisibilityPositive() throws Exception, Error {
         Assert.assertTrue(visible("//*[@*='streamline-bin-layer']"));
         return this;
     }
 
-    public ViewItemPage verifyIsActPanelActionDetailsPositiveIntegrationAddToCartDialogVisibility() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsActPanelSystemIntegrationAddToCartDialogVisibilityPositive() throws Exception, Error {
         Assert.assertTrue(visible("//*[@*='app-atc-layer-redesign-content-wrapper ']"));
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyUnitVisibility() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyUnitVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='shippingSummary']//ancestor::*[@*='shippingPlaceHolderId']");
@@ -851,7 +801,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyUnitUSVisibility() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyUnitUSVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='vi-crwarranty-logo vi-crwarranty-image']");
@@ -884,7 +834,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyUnitUSClickable() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyUnitUSClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='vi-crwarranty-subtext']//parent::a[contains(@href, 'refurbished')]");
@@ -899,7 +849,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyUnitClickable() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyUnitClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='vim x-returns-minview']//ancestor::a");
@@ -911,7 +861,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyWarrantyLinkRedirection() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyWarrantyLinkRedirection() throws Exception, Error {
         click("//*[@*='vi-crwarranty-subtext']//parent::a[contains(@href, 'refurbished')]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
@@ -919,7 +869,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyReturnsLinkRedirection() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyReturnsLinkRedirection() throws Exception, Error {
         Object before = ((JavascriptExecutor) driver).executeScript("return document.documentElement.scrollTop");
         click("//*[@*='vim x-returns-minview']//ancestor::span[contains(@*, 'SECONDARY')]");
         Object after = ((JavascriptExecutor) driver).executeScript("return document.documentElement.scrollTop");
@@ -928,13 +878,13 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuySeeTermsToApplyLinkRedirection() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuySeeTermsToApplyLinkRedirection() throws Exception, Error {
         click("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
         Assert.assertTrue(visible(calculatorDialog));
         return this;
     }
 
-    public ViewItemPage verifyIsWhy2BuyLearnMoreLinkRedirection() throws Exception, Error {
+    public ProductPanel verifyIsWhy2BuyLearnMoreLinkRedirection() throws Exception, Error {
         click("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
@@ -942,7 +892,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceUnitsBasicVisibility() throws Exception, Error {
+    public ProductPanel verifyIsShopWithConfidenceUnitsBasicVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='SHOP_WITH_CONFIDENCE0-0-1-2-title']/*");
@@ -957,7 +907,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceUnitsUSVisibility() throws Exception, Error {
+    public ProductPanel verifyIsShopWithConfidenceUnitsUSVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-item-text']/span")).size(); i++) {
@@ -977,7 +927,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceUnitsClickable() throws Exception, Error {
+    public ProductPanel verifyIsShopWithConfidenceUnitsClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-section-icon-with-details__data-item-text']/a")).size(); i++) {
@@ -991,7 +941,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceIntegrationRefurbishedLearnMoreRedirection() throws Exception, Error {
+    public ProductPanel verifyIsShopWithConfidenceIntegrationRefurbishedLearnMoreRedirection() throws Exception, Error {
         click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[1]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
@@ -999,7 +949,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceIntegrationTopRatedPlusLearnMoreRedirection() throws Exception, Error {
+    public ProductPanel verifyIsShopWithConfidenceIntegrationTopRatedPlusLearnMoreRedirection() throws Exception, Error {
         click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[2]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
@@ -1007,7 +957,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection(String local) throws Exception, Error {
+    public ProductPanel verifyIsShopWithConfidenceIntegrationMoneyBackGuaranteeLearnMoreRedirection(String local) throws Exception, Error {
         click("(//*[@*='ux-section-icon-with-details__data-item-text']/a)[" + (local.equals("US") ? "3" : "1") + "]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
@@ -1015,7 +965,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoUnitsVisibility() throws Exception, Error {
+    public ProductPanel verifyIsSellerInfoUnitsVisibility() throws Exception, Error {
         waitAnimToPlay();
         waitAnimToPlay();
         Set<String> elements = new HashSet<String>() {
@@ -1041,7 +991,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoUnitsClickable() throws Exception, Error {
+    public ProductPanel verifyIsSellerInfoUnitsClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='follow-ebay follow-ebay-fakeLink nounderline btn btn--large btn--primary']");
@@ -1059,7 +1009,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoIntegrationSellerNameRedirection() throws Exception, Error {
+    public ProductPanel verifyIsSellerInfoIntegrationSellerNameRedirection() throws Exception, Error {
         click("//*[@*='ux-seller-section__item--seller']/a[1]");
         Set<String> windows = driver.getWindowHandles();
         driver.switchTo().window((String) windows.toArray()[1]).navigate();
@@ -1067,33 +1017,33 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoIntegrationSellerNameRatingRedirection() throws Exception, Error {
+    public ProductPanel verifyIsSellerInfoIntegrationSellerNameRatingRedirection() throws Exception, Error {
         click("//*[@*='ux-seller-section__item--seller']/a[2]");
         waitAnimToPlay();
         Assert.assertTrue(waitTitle(config.getProperty("feedback", "Feedback")));
         return this;
     }
 
-    public ViewItemPage verifyIsProductListingIntegrationSeeFeedbackPrompt() throws Exception, Error {
+    public ProductPanel verifyIsActionDetailsIntegrationSeeFeedbackPrompt() throws Exception, Error {
         click("//*[@*='soldwithfeedback']//ancestor::*[@*='byrfdbk_atf_lnk']");
         waitAnimToPlay();
         Assert.assertTrue(visible("//*[@*='oly_container']//ancestor::*[@*='byrfdbk_modal']"));
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoIntegrationVisitStoreRedirection() throws Exception, Error {
+    public ProductPanel verifyIsSellerInfoIntegrationVisitStoreRedirection() throws Exception, Error {
         click("(//*[@*='ux-seller-section__item']/a)[2]");
         Assert.assertTrue(waitTitle(config.getProperty("stores", "eBay Stores")));
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoIntegrationSeeOtherItemsRedirection() throws Exception, Error {
+    public ProductPanel verifyIsSellerInfoIntegrationSeeOtherItemsRedirection() throws Exception, Error {
         click("(//*[@*='ux-seller-section__item']/a)[3]");
         Assert.assertTrue(waitTitle("| eBay"));
         return this;
     }
 
-    public ViewItemPage verifyIsSellNowVisibility() throws Exception, Error {
+    public ProductPanel verifyIsSellNowVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='inst_sale_msg']");
@@ -1106,7 +1056,7 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsSellNowClickable() throws Exception, Error {
+    public ProductPanel verifyIsSellNowClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
                 add("//*[@*='inst_sale_msg']");
@@ -1119,13 +1069,13 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage verifyIsSellerInfoSystemIntegrationContactSellerRedirection() throws Exception {
+    public ProductPanel verifyIsSellerInfoSystemIntegrationContactSellerRedirection() throws Exception {
         click("(//*[@*='ux-seller-section__content']//ancestor::*[@*='ux-seller-section__item']/*)[3]");
         Assert.assertTrue(waitTitle(config.getProperty("contactSellerTitle")));
         return this;
     }
 
-    public ViewItemPage verifyIsWhyToBuyWatchersQuantityPersistence() throws Exception {
+    public ProductPanel verifyIsWhyToBuyWatchersQuantityPersistence() throws Exception {
         int before = Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent"));
         driver.navigate().refresh();
         int after = Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent"));
@@ -1133,55 +1083,55 @@ public class ViewItemPage extends BasePage {
         return this;
     }
 
-    public ViewItemPage setWhyToBuyWatchlistButtonStateA() throws Exception {
+    public ProductPanel setWhyToBuyWatchlistButtonStateA() throws Exception {
         data.put("setWhyToBuyWatchlistButtonStateA", Integer.parseInt(attribute("//*[@*='vi-atl-lnk']//ancestor::*[@*='vi-atw-txt']", "textContent")));
         return this;
     }
 
-    public ViewItemPage setWhyToBuyWatchlistButtonStateB() throws Exception {
+    public ProductPanel setWhyToBuyWatchlistButtonStateB() throws Exception {
         data.put("setWhyToBuyWatchlistButtonStateB", Integer.parseInt(attribute("//*[@*='vi-atl-lnk']//ancestor::*[@*='vi-atw-txt']", "textContent")));
         return this;
     }
 
-    public ViewItemPage verifyIsWhyToBuyWatchlistButtonStateAtoBTransfer() throws Exception {
+    public ProductPanel verifyIsWhyToBuyWatchlistButtonStateAtoBTransfer() throws Exception {
         int before = (int) data.get("setWhyToBuyWatchlistButtonStateA");
         int after = (int) data.get("setWhyToBuyWatchlistButtonStateB");
         Assert.assertTrue(after > before);
         return this;
     }
 
-    public ViewItemPage verifyIsWhyToBuyWatchlistButtonStateBtoATransfer() throws Exception {
+    public ProductPanel verifyIsWhyToBuyWatchlistButtonStateBtoATransfer() throws Exception {
         int before = (int) data.get("setWhyToBuyWatchlistButtonStateB");
         int after = (int) data.get("setWhyToBuyWatchlistButtonStateA");
         Assert.assertTrue(after < before);
         return this;
     }
 
-    public ViewItemPage setIsWhyToBuyWatchersQuantityStateA() throws Exception {
+    public ProductPanel setIsWhyToBuyWatchersQuantityStateA() throws Exception {
         data.put("setIsWhyToBuyWatchersQuantityStateA", Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent")));
         return this;
     }
 
-    public ViewItemPage setIsWhyToBuyWatchersQuantityStateB() throws Exception {
+    public ProductPanel setIsWhyToBuyWatchersQuantityStateB() throws Exception {
         data.put("setIsWhyToBuyWatchersQuantityStateB", Integer.parseInt(attribute("(//*[@*='why2buy']//ancestor::*[@*='w2b-cnt w2b-3 w2b-brdr'])[2]", "textContent")));
         return this;
     }
 
-    public ViewItemPage setIsWhyToBuyWatchersQuantityStateAtoBTransfer() {
+    public ProductPanel setIsWhyToBuyWatchersQuantityStateAtoBTransfer() {
         String before = (String) data.get("setIsWhyToBuyWatchersQuantityStateA");
         String after = (String) data.get("setIsWhyToBuyWatchersQuantityStateB");
         Assert.assertNotSame(before, after);
         return this;
     }
 
-    public ViewItemPage setIsWhyToBuyWatchersQuantityStateBtoATransfer() {
+    public ProductPanel setIsWhyToBuyWatchersQuantityStateBtoATransfer() {
         int before = (int) data.get("setWhyToBuyWatchlistButtonStateB");
         int after = (int) data.get("setWhyToBuyWatchlistButtonStateA");
         Assert.assertNotSame(before, after);
         return this;
     }
 
-    public ViewItemPage verifyIsActionDetailsCartIconNumberTransition() throws Exception {
+    public ProductPanel verifyIsActionDetailsCartIconNumberTransition() throws Exception {
         verifyIsActionDetailsSystemQuantityBoundaryMin();
         click("//*[@*='clzBtn viicon-close']");
         return this;

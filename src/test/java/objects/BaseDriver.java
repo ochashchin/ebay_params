@@ -3,6 +3,7 @@ package objects;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.opera.OperaOptions;
 
@@ -27,7 +28,9 @@ public class BaseDriver {
 
         switch (browser) {
             case "chrome":
-                webdrivers.set(new ChromeDriver());
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("start-maximized");
+                webdrivers.set(new ChromeDriver(options));
                 break;
             case "opera":
                 File path = new File(System.getProperty("user.dir") + "/src/test/resources/opera_settings");
