@@ -114,6 +114,15 @@ public class AccountBar extends BasePage {
         return this;
     }
 
+    public void verifyWatchlistDropDownIntegrationTransitionAtoB() throws Exception {
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[2]");
+        waitAnimToPlay();
+        verifyWatchlistDropDownIntegrationTransitionA();
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[2]");
+        waitAnimToPlay();
+        verifyWatchlistDropDownIntegrationTransitionB();
+    }
+
     public AccountBar verifyWatchlistDropDownIntegrationTransitionA() throws Exception {
         for (String s : watchlist) {
             Assert.assertTrue(visible(s));
@@ -178,7 +187,12 @@ public class AccountBar extends BasePage {
         return this;
     }
 
-    public AccountBar verifyCartDropDownIntegrationTransitionANoSignedIn() throws Exception {
+    public void verifyCartDropDownIntegrationTransitionANoSignedIn() throws Exception {
+        Assert.assertTrue(visible("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-hover-gen-error gh-flyout-error']"));
+        Assert.assertTrue(clickable("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-hover-gen-error gh-flyout-error']/a"));
+    }
+
+    public AccountBar verifyCartDropDownIntegrationTransitionA() throws Exception {
         for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*")).size(); i++) {
             Assert.assertTrue(visible("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
             Assert.assertTrue(clickable("//*[@*='gh-top']//ancestor::*[@*='gh-minicart-header gh-minicart-header-empty']/*" + "[" + i + "]"));
@@ -205,6 +219,13 @@ public class AccountBar extends BasePage {
     }
 
     public AccountBar verifyCartRedirectionNoSignedIn() throws Exception {
+        click("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[5]");
+        waitAnimToPlay();
+        Assert.assertTrue(waitTitle(config.getProperty("registrationTitle")));
+        return this;
+    }
+
+    public AccountBar verifyCartRedirection() throws Exception {
         click("//*[@*='gh-top']//ancestor::*[@*='gh-eb']/*[5]");
         waitAnimToPlay();
         Assert.assertTrue(waitTitle(config.getProperty("cartTitle")));

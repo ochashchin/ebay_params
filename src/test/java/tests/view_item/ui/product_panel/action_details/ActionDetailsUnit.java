@@ -11,7 +11,7 @@ import static objects.Config.*;
 public class ActionDetailsUnit {
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_action_details_unit_visibility(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -22,7 +22,7 @@ public class ActionDetailsUnit {
     }
 
     @Test(groups = {UNIT, US})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_action_details_us_unit_visibility(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -33,7 +33,7 @@ public class ActionDetailsUnit {
     }
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_action_details_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -44,7 +44,7 @@ public class ActionDetailsUnit {
     }
 
     @Test(groups = {UNIT, US})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_action_details_us_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -55,7 +55,7 @@ public class ActionDetailsUnit {
     }
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_action_details_unit_focusable(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -66,7 +66,7 @@ public class ActionDetailsUnit {
     }
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_action_details_unit_selectable(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);

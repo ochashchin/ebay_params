@@ -11,7 +11,7 @@ import static objects.Config.*;
 public class EnlargeViewIntegrationSystem {
 
     @Test(groups = {INTEGRATION_SYSTEM, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_enlarge_integration_focus_to_viewport(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -22,7 +22,7 @@ public class EnlargeViewIntegrationSystem {
     }
 
     @Test(groups = {INTEGRATION_SYSTEM, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_enlarge_view_integration_color_dropdown(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);

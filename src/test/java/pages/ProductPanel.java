@@ -723,7 +723,7 @@ public class ProductPanel extends BasePage {
         return this;
     }
 
-    public ProductPanel verifyIsActPanelIntegrationPriceCredit() throws Exception, Error {
+    public ProductPanel verifyIsActPanelIntegrationPriceCreditVisibility() throws Exception, Error {
         click(actPanelCreditText);
         waitAnimToPlay();
         Assert.assertTrue(visible(calculatorDialog));

@@ -16,7 +16,7 @@ public class ActPanelIntegration {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
             scroll();
-            verifyIsActPanelIntegrationPriceCredit();
+            verifyIsActPanelIntegrationPriceCreditVisibility();
             quit();
         }};
     }

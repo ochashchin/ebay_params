@@ -10,9 +10,9 @@
                 <include name="UK"/>
             </run>
         </groups>
-        <classes>
-            <class name="tests.ViewItemTest"/>
-        </classes>
+        <packages>
+            <package name="tests.view_item.ui.product_panel.*"/>
+        </packages>
     </test>
     <test name="test_view_item_au">
         <parameter name="local" value="au"/>
@@ -21,9 +21,9 @@
                 <include name="AU"/>
             </run>
         </groups>
-        <classes>
-            <class name="tests.ViewItemTest"/>
-        </classes>
+        <packages>
+            <package name="tests.view_item.ui.product_panel.*"/>
+        </packages>
     </test>
     <test name="test_view_item_de">
         <parameter name="local" value="de"/>
@@ -32,9 +32,9 @@
                 <include name="DE"/>
             </run>
         </groups>
-        <classes>
-            <class name="tests.ViewItemTest"/>
-        </classes>
+        <packages>
+            <package name="tests.view_item.ui.product_panel.*"/>
+        </packages>
     </test>
     <test name="test_view_item_us">
         <parameter name="local" value="us"/>
@@ -43,8 +43,8 @@
                 <include name="US"/>
             </run>
         </groups>
-        <classes>
-            <class name="tests.ViewItemTest"/>
-        </classes>
+        <packages>
+            <package name="tests.view_item.ui.product_panel.*"/>
+        </packages>
     </test>
 </suite>

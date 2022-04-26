@@ -1,0 +1,58 @@
+[36736:67268:0413/160829.922:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 1
+[69640:8608:0413/161055.932:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[69640:8608:0413/161055.946:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[13120:67912:0413/161205.197:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 23
+[13120:67912:0413/161218.578:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[13120:67912:0413/161218.589:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[13120:67912:0413/161218.910:WARNING:socket_tcp.cc(129)] Error from connecting socket, result=-111
+[62084:21020:0413/161300.645:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 9
+[62084:21020:0413/161300.653:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 1
+[62084:21020:0413/161300.705:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 1
+[27052:12576:0413/161559.225:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[27052:12576:0413/161559.237:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[27052:12576:0413/161642.966:WARNING:socket_tcp.cc(333)] Remote peer has shutdown TCP socket.
+[27052:12576:0413/161644.859:WARNING:socket_tcp.cc(333)] Remote peer has shutdown TCP socket.
+[35368:70324:0413/161721.104:ERROR:gpu_init.cc(441)] Passthrough is not supported, GL is disabled, ANGLE is 
+[71824:69648:0413/162010.624:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[71824:69648:0413/162010.637:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[53696:41164:0413/162019.840:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[53696:41164:0413/162019.856:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[77392:60228:0413/162037.369:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[77392:60228:0413/162037.387:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[60204:75224:0413/162409.120:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[60204:75224:0413/162409.132:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[65156:60768:0413/162521.118:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 93
+[65156:60768:0413/162524.228:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[65156:60768:0413/162524.240:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[61396:23452:0413/162740.843:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 79
+[61396:23452:0413/162740.889:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 81
+[61396:23452:0413/162740.927:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 83
+[61396:23452:0413/162740.969:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 85
+[61396:23452:0413/162744.010:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[61396:23452:0413/162744.022:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[68468:44380:0413/163001.066:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 9
+[68468:44380:0413/163001.066:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 13
+[68468:44380:0413/163001.066:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 15
+[68468:44380:0413/163001.066:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 11
+[68468:44380:0413/163001.066:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 19
+[68468:44380:0413/163001.066:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 17
+[68468:44380:0413/163001.839:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 61
+[68468:44380:0413/163003.067:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 65
+[68468:44380:0413/163003.150:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 59
+[68468:44380:0413/163003.236:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 69
+[68468:44380:0413/163003.287:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 71
+[68468:44380:0413/163007.096:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 79
+[68468:23616:0413/163007.142:WARNING:sqlite_persistent_store_backend_base.cc(165)] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:213 to client_task_runner_.
+[68468:23616:0413/163007.142:WARNING:sqlite_persistent_store_backend_base.cc(165)] Failed to post task from FlushAndNotifyInBackground@net/extras/sqlite/sqlite_persistent_store_backend_base.cc:213 to client_task_runner_.
+[20456:58732:0413/163135.087:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 51
+[20456:58732:0413/163135.190:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 53
+[37208:28812:0413/163213.281:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 1
+[37208:28812:0413/163213.545:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 63
+[37208:28812:0413/163213.802:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 65
+[37208:28812:0413/163225.438:WARNING:socket_tcp.cc(129)] Error from connecting socket, result=-111
+[37208:28812:0413/163230.759:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[37208:28812:0413/163230.772:ERROR:ssl_client_socket_impl.cc(995)] handshake failed; returned -1, SSL error code 1, net_error -100
+[37208:28812:0413/163314.288:WARNING:socket_tcp.cc(333)] Remote peer has shutdown TCP socket.
+[37208:28812:0413/163317.423:WARNING:socket_tcp.cc(333)] Remote peer has shutdown TCP socket.
+[37208:28812:0413/163340.750:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 1
+[37208:28812:0413/163340.824:WARNING:spdy_session.cc(3541)] Received HEADERS for invalid stream 3

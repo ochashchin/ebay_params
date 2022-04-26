@@ -11,7 +11,7 @@ import static objects.Config.*;
 public class ViewPortUnit {
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_viewport_unit_visible(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -22,7 +22,7 @@ public class ViewPortUnit {
     }
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_viewport_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)){{
                 open(local);
@@ -33,7 +33,7 @@ public class ViewPortUnit {
     }
 
     @Test(groups = {UNIT, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_viewport_unit_focusable(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)){{
                 open(local);

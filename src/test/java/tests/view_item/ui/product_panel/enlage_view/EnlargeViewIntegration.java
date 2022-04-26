@@ -11,7 +11,7 @@ import static objects.Config.*;
 public class EnlargeViewIntegration {
 
     @Test(groups = {INTEGRATION, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_enlarge_integration_expand(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
@@ -22,7 +22,7 @@ public class EnlargeViewIntegration {
     }
 
     @Test(groups = {INTEGRATION, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_enlarge_integration_right(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)){{
             open(local);
@@ -33,7 +33,7 @@ public class EnlargeViewIntegration {
     }
 
     @Test(groups = {INTEGRATION, US, UK, DE, AU})
-    @Parameters({"browser", "local"})
+    @Parameters({BROWSER, LOCAL})
     public void test_view_item_enlarge_integration_left(@Optional() String browser, @Optional() String local) throws Exception {
         new ProductPanel(BaseDriver.getInstance().getDriver(browser)){{
             open(local);

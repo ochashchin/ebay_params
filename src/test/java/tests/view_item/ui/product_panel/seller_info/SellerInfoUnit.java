@@ -24,11 +24,11 @@ public class SellerInfoUnit {
     @Test(groups = {UNIT, US, UK, DE, AU})
     @Parameters({BROWSER, LOCAL})
     public void test_view_item_seller_info_unit_clickable(@Optional() String browser, @Optional() String local) throws Exception {
-        new ProductPanel(BaseDriver.getInstance().getDriver(browser)){{
+        new ProductPanel(BaseDriver.getInstance().getDriver(browser)) {{
             open(local);
-                    scroll();
-                    verifyIsSellerInfoUnitsClickable();
-                    quit();
+            scroll();
+            verifyIsSellerInfoUnitsClickable();
+            quit();
         }};
     }
 
