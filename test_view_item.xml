@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="test_view_item.xml" verbose="1" parallel="methods" thread-count="6">
+<suite name="test_view_item.xml" verbose="1" parallel="methods" thread-count="8">
     <listeners>
         <listener class-name="objects.OnFailTestListener"/>
     </listeners>
@@ -9,9 +9,12 @@
             <run>
                 <include name="UK"/>
             </run>
+            <run>
+                <include name="UNIT"/>
+            </run>
         </groups>
         <packages>
-            <package name="tests.view_item.ui.product_panel.*"/>
+            <package name="tests.ui.view_item.product_panel.*"/>
         </packages>
     </test>
     <test name="test_view_item_au">
@@ -20,9 +23,12 @@
             <run>
                 <include name="AU"/>
             </run>
+            <run>
+                <include name="UNIT"/>
+            </run>
         </groups>
         <packages>
-            <package name="tests.view_item.ui.product_panel.*"/>
+            <package name="tests.ui.view_item.product_panel.*"/>
         </packages>
     </test>
     <test name="test_view_item_de">
@@ -31,9 +37,12 @@
             <run>
                 <include name="DE"/>
             </run>
+            <run>
+                <include name="UNIT"/>
+            </run>
         </groups>
         <packages>
-            <package name="tests.view_item.ui.product_panel.*"/>
+            <package name="tests.ui.view_item.product_panel.*"/>
         </packages>
     </test>
     <test name="test_view_item_us">
@@ -42,9 +51,12 @@
             <run>
                 <include name="US"/>
             </run>
+            <run>
+                <include name="UNIT"/>
+            </run>
         </groups>
         <packages>
-            <package name="tests.view_item.ui.product_panel.*"/>
+            <package name="tests.ui.view_item.product_panel.*"/>
         </packages>
     </test>
 </suite>

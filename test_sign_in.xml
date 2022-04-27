@@ -4,39 +4,39 @@
         <listener class-name="objects.OnFailTestListener"/>
     </listeners>
 
-    <test name="test_sign_in_uk">
-        <parameter name="local" value="uk"/>
-        <groups>
-            <run>
-                <include name="UK"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="tests.view_item.ui.sign_in.*"/>
-        </packages>
-    </test>
-    <test name="test_sign_in_au">
-        <parameter name="local" value="au"/>
-        <groups>
-            <run>
-                <include name="AU"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="tests.view_item.ui.sign_in.*"/>
-        </packages>
-    </test>
-    <test name="test_sign_in_de">
-        <parameter name="local" value="de"/>
-        <groups>
-            <run>
-                <include name="DE"/>
-            </run>
-        </groups>
-        <packages>
-            <package name="tests.view_item.ui.sign_in.*"/>
-        </packages>
-    </test>
+<!--    <test name="test_sign_in_uk">-->
+<!--        <parameter name="local" value="uk"/>-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="UK"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <packages>-->
+<!--            <package name="tests.view_item.ui.sign_in.*"/>-->
+<!--        </packages>-->
+<!--    </test>-->
+<!--    <test name="test_sign_in_au">-->
+<!--        <parameter name="local" value="au"/>-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="AU"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <packages>-->
+<!--            <package name="tests.view_item.ui.sign_in.*"/>-->
+<!--        </packages>-->
+<!--    </test>-->
+<!--    <test name="test_sign_in_de">-->
+<!--        <parameter name="local" value="de"/>-->
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="DE"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <packages>-->
+<!--            <package name="tests.view_item.ui.sign_in.*"/>-->
+<!--        </packages>-->
+<!--    </test>-->
     <test name="test_sign_in_us">
         <parameter name="local" value="us"/>
         <groups>

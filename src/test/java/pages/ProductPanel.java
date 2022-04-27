@@ -806,8 +806,6 @@ public class ProductPanel extends BasePage {
             {
                 add("//*[@*='vi-crwarranty-logo vi-crwarranty-image']");
                 add("//*[@*='vi-crwarranty-title']");
-                add("//*[@*='iti-eu-label vi-u-flL']");
-                add("//*[@*='availableAtOrFrom']");
                 add("//*[@*='ux-textspans']//parent::a[contains(@href, 'creditcard')]/span");
                 add("//*[@*='ux-labels-values__values-content']//ancestor::span[@class='ux-textspans ux-textspans--SECONDARY']");
                 add("//*[@*='fake-link fake-link--action']//parent::*[@*='ux-textspans ux-textspans--PSEUDOLINK']");
@@ -994,7 +992,6 @@ public class ProductPanel extends BasePage {
     public ProductPanel verifyIsSellerInfoUnitsClickable() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
-                add("//*[@*='follow-ebay follow-ebay-fakeLink nounderline btn btn--large btn--primary']");
                 for (int i = 1; i <= driver.findElements(By.xpath("//*[@*='ux-seller-section__item--seller']/a")).size(); i++) {
                     add("(//*[@*='ux-seller-section__item--seller']/a)[" + i + "]");
                 }
@@ -1046,7 +1043,7 @@ public class ProductPanel extends BasePage {
     public ProductPanel verifyIsSellNowVisibility() throws Exception, Error {
         Set<String> elements = new HashSet<String>() {
             {
-                add("//*[@*='inst_sale_msg']");
+                add("//*[contains(@*,'inst_sale')]");
                 add("(//*[contains(@*,'vi-slt-c vi-slt-instSale')]//child::span[2])[1]");
             }
         };

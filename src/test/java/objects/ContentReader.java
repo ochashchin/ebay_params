@@ -2,13 +2,14 @@ package objects;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 public class ContentReader {
 
     public static FileInputStream getPropertyFile(String testName, String... values) throws IOException {
 
         for (String value : values) {
-            testName += "_" + value;
+            testName += "_" + value.toLowerCase();
         }
 
         String path = System.getProperty("user.dir");
