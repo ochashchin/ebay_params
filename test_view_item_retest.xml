@@ -2,6 +2,7 @@
 <suite name="test_view_item.xml" verbose="1" parallel="methods" thread-count="6">
     <listeners>
         <listener class-name="objects.OnSkipTestListener"/>
+        <listener class-name="objects.OnFilterTestListener"/>
     </listeners>
     <!--    <test name="test_view_item_uk">-->
     <!--        <parameter name="local" value="uk"/>-->
@@ -41,14 +42,7 @@
         <groups>
             <run>
                 <include name="US"/>
-            </run>
-            <run>
                 <include name="UNIT"/>
-            </run>
-            <run>
-                <exclude name="UK"/>
-                <exclude name="DE"/>
-                <exclude name="AU"/>
             </run>
         </groups>
         <packages>

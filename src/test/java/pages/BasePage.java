@@ -7,6 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
 import java.util.function.Function;
@@ -142,6 +146,38 @@ public abstract class BasePage {
             Log.printLn("Element not visible, because: " + e);
             return false;
         }
+    }
+
+    public boolean compareImagesEqual(BufferedImage img1, BufferedImage img2) {
+        if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
+            for (int x = 0; x < img1.getWidth(); x++) {
+                for (int y = 0; y < img1.getHeight(); y++) {
+                    if (img1.getRGB(x, y) != img2.getRGB(x, y))
+                        return false;
+                }
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public BufferedImage buildImage(String id) throws IOException {
+
+        Point location = driver.findElement(By.xpath("//*[@id='" + id + "']")).getLocation();
+
+        File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        final BufferedImage source = ImageIO.read(scrFile);
+
+        String height = ((JavascriptExecutor) driver)
+                .executeScript("return $('#" + id + "').height()").toString();
+        String width = ((JavascriptExecutor) driver)
+                .executeScript("return $('#" + id + "').width()").toString();
+
+        BufferedImage subimage = source.getSubimage(location.x, location.y, Integer.parseInt(width), Integer.parseInt(height));
+//        ImageIO.write(subimage, "png", new File("C:\\Users\\Administrator\\Desktop\\screen.png"));
+        return subimage;
     }
 
     public boolean visibleLayout(String xPath) throws Exception {

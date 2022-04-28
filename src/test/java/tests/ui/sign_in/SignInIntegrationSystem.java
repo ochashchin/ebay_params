@@ -1,4 +1,4 @@
-package tests.ui.view_item.sign_in;
+package tests.ui.sign_in;
 
 import objects.BaseDriver;
 import org.openqa.selenium.WebDriver;

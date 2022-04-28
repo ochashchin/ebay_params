@@ -40,6 +40,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>net.avh4.util</groupId>
+            <artifactId>imagediff</artifactId>
+            <version>0.0.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
