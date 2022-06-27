@@ -1,13 +1,12 @@
 package pages;
 
+import objects.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import java.awt.image.BufferedImage;
 import java.time.Duration;
 
-import static objects.ContentReader.getClassName;
-import static objects.ContentReader.getPropertyFile;
 import static pages.ProductPanel.baseURL;
 
 public class SearchBar extends BasePage {
@@ -17,10 +16,7 @@ public class SearchBar extends BasePage {
     }
 
     public void open(String local) throws Exception, Error {
-        if (local == null || local.equals(""))
-            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
-        else
-            config.load(getPropertyFile(getClassName(2), local));
+        loadProps(local);
 
         if (!driver.getCurrentUrl().contains("http"))
             get(config.getProperty("url") + baseURL);
@@ -42,7 +38,5 @@ public class SearchBar extends BasePage {
 
         Assert.assertFalse(compareImagesEqual(before, after));
     }
-
-
 
 }

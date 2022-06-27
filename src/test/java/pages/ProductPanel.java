@@ -1,5 +1,6 @@
 package pages;
 
+import objects.BasePage;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
@@ -10,9 +11,6 @@ import java.awt.datatransfer.DataFlavor;
 import java.time.Duration;
 import java.util.List;
 import java.util.*;
-
-import static objects.ContentReader.getClassName;
-import static objects.ContentReader.getPropertyFile;
 
 public class ProductPanel extends BasePage {
 
@@ -70,23 +68,21 @@ public class ProductPanel extends BasePage {
         super(driver);
     }
 
-    public ProductPanel open(String local) throws Exception, Error {
-        if (local == null || local.equals(""))
-            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
-        else
-            config.load(getPropertyFile(getClassName(2), local));
+    public ProductPanel open(String local){
+        loadProps(local);
 
         if (!driver.getCurrentUrl().contains("http"))
             get(config.getProperty("url") + baseURL);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         waitAnimToPlay();
-        driver.navigate().refresh();
+        refresh();
 
         return this;
     }
 
-    public ProductPanel scroll() throws Exception, Error {
+
+    public ProductPanel scroll() {
         scrollToElement(viewPortDown);
         return this;
     }

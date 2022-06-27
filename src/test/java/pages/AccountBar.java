@@ -1,5 +1,6 @@
 package pages;
 
+import objects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -8,9 +9,6 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-import static objects.ContentReader.getClassName;
-import static objects.ContentReader.getPropertyFile;
-
 public class AccountBar extends BasePage {
 
     public AccountBar(WebDriver driver) {
@@ -18,10 +16,7 @@ public class AccountBar extends BasePage {
     }
 
     public AccountBar open(String local) throws Exception {
-        if (local == null || local.equals(""))
-            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
-        else
-            config.load(getPropertyFile(getClassName(2), local));
+        loadProps(local);
 
         if (!driver.getCurrentUrl().contains("http"))
             get(config.getProperty("url"));

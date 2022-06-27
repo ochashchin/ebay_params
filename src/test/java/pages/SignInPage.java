@@ -1,5 +1,6 @@
 package pages;
 
+import objects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -7,10 +8,6 @@ import org.testng.Assert;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-
-import static objects.ContentReader.getClassName;
-import static objects.ContentReader.getPropertyFile;
-import static objects.BaseDriver.*;
 
 public class SignInPage extends BasePage {
 
@@ -59,10 +56,7 @@ public class SignInPage extends BasePage {
     }
 
     public SignInPage open(String local) throws Exception {
-        if (local == null || local.equals(""))
-            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
-        else
-            config.load(getPropertyFile(getClassName(2), local));
+        loadProps(local);
 
         if (!driver.getCurrentUrl().contains("http"))
             get(config.getProperty("url"));

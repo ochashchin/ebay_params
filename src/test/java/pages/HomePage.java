@@ -1,15 +1,12 @@
 package pages;
 
+import objects.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
 import java.time.Duration;
-
-import static objects.ContentReader.getClassName;
-import static objects.ContentReader.getPropertyFile;
-import static objects.BaseDriver.*;
 
 public class HomePage extends BasePage {
 
@@ -20,10 +17,7 @@ public class HomePage extends BasePage {
     }
 
     public HomePage open(String local) throws Exception {
-        if (local == null || local.equals(""))
-            config.load(getPropertyFile(getClassName(2), System.getProperty("testLocal")));
-        else
-            config.load(getPropertyFile(getClassName(2), local));
+        loadProps(local);
 
         get(config.getProperty("url"));
         driver.manage().window().maximize();
