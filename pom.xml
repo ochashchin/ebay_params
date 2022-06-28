@@ -11,8 +11,8 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <defaultSuiteFile>test_view_item.xml</defaultSuiteFile>
     </properties>
-
 
     <dependencies>
         <dependency>
@@ -73,13 +73,14 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M5</version>
                     <configuration>
-<!--                        mvn test -DtestLocal="uk"-->
                         <systemPropertyVariables>
+<!--                        mvn clean test -DtestLocal="uk"-->
                             <testBrowser>chrome</testBrowser>
                             <testLocal>us</testLocal>
                         </systemPropertyVariables>
                         <suiteXmlFiles>
-                            <suiteXmlFile>test_view_item.xml</suiteXmlFile>
+<!--                        mvn clean test -DdefaultSuiteFile="test_sign_in.xml"-->
+                            <suiteXmlFile>${defaultSuiteFile}</suiteXmlFile>
                         </suiteXmlFiles>
                         <skipTests>false</skipTests>
                     </configuration>

@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="test_sign_in.xml"  verbose="1" parallel="methods" thread-count="6">
+<suite name="test_sign_in.xml"  verbose="1" parallel="methods" thread-count="3">
     <listeners>
         <listener class-name="objects.OnFailTestListener"/>
     </listeners>
@@ -45,7 +45,7 @@
             </run>
         </groups>
         <packages>
-            <package name="tests.view_item.ui.sign_in.*"/>
+            <package name="tests.ui.sign_in.*"/>
         </packages>
     </test>
 </suite>
