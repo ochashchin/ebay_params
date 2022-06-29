@@ -33,8 +33,7 @@ public class BaseDriver {
                 options.addArguments("--disable-infobars"); // disabling infobars
                 options.addArguments("--disable-extensions"); // disabling extensions
                 options.addArguments("--no-sandbox"); // bypass OS security model
-                options.addArguments("--single-process"); // bypass OS security model
-                options.setHeadless(true);
+                options.addArguments("--single-process");
                 webdrivers.set(new ChromeDriver(options));
                 break;
             case "opera":
