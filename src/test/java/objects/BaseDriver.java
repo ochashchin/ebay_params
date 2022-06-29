@@ -30,7 +30,7 @@ public class BaseDriver {
             case "chrome":
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("start-maximized");
-                options.setExperimentalOption("useAutomationExtension", false);
+                options.addArguments("no-sandbox");
                 webdrivers.set(new ChromeDriver(options));
                 break;
             case "opera":
