@@ -34,6 +34,7 @@ public class BaseDriver {
                 options.addArguments("disable-extensions"); // disabling extensions
                 options.addArguments("disable-dev-shm-usage"); // overcome limited resource problems
                 options.addArguments("no-sandbox"); // bypass OS security model
+                options.addArguments("--single-process"); // bypass OS security model
                 options.setHeadless(true);
                 webdrivers.set(new ChromeDriver(options));
                 break;
