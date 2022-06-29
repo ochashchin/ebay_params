@@ -30,6 +30,7 @@ public class BaseDriver {
             case "chrome":
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("start-maximized");
+                options.setExperimentalOption("useAutomationExtension", false);
                 webdrivers.set(new ChromeDriver(options));
                 break;
             case "opera":
