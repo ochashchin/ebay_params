@@ -28,9 +28,9 @@ public class BaseDriver {
 
         switch (browser) {
             case "chrome":
+                System.setProperty("webdriver.chrome.whitelistedIps", "");
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("start-maximized");
-                options.addArguments("no-sandbox");
                 webdrivers.set(new ChromeDriver(options));
                 break;
             case "opera":
