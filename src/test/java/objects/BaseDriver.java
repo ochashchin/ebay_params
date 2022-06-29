@@ -28,9 +28,12 @@ public class BaseDriver {
 
         switch (browser) {
             case "chrome":
-                System.setProperty("webdriver.chrome.whitelistedIps", "");
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("start-maximized");
+                options.addArguments("start-maximized"); // open Browser in maximized mode
+                options.addArguments("disable-infobars"); // disabling infobars
+                options.addArguments("--disable-extensions"); // disabling extensions
+                options.addArguments("--disable-dev-shm-usage"); // overcome limited resource problems
+                options.addArguments("--no-sandbox"); // bypass OS security model
                 webdrivers.set(new ChromeDriver(options));
                 break;
             case "opera":
